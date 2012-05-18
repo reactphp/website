@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>React</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+<div id="intro">
+    <img src="logo.png" />
+
+    <p>React is a platform built on <a
+        href="http://www.php.net">PHP</a>
+        for easily building fast, scalable network applications.  React
+        uses an event-driven, non-blocking I/O model that makes it
+        lightweight and efficient, perfect for data-intensive real-time
+        applications that run across distributed devices.</p>
+
+        <a href="https://github.com/react-php/react" class="button" id="downloadbutton">GitHub</a>
+        <!-- <a href="api/" class="button" id="docsbutton">Docs</a> -->
+        <p class="version">v0.0.1-alpha</p>
+</div>
+
+<div id="quotes" class="clearfix">
+    <h2>React in the Industry</h2>
+
+    <p>It's like, so amazing, man.</p>
+</div>
+
+<div id="content" class="clearfix">
+    <h2>An example: Webserver</h2>
+    <p>This simple web server written in React responds with "Hello World" for every request.</p>
+    <pre>
+require 'vendor/autoload.php';
+$stack = new React\Espresso\Stack(function ($request, $response) {
+    $response->writeHead(200, array('Content-Type' => 'text/plain'));
+    $response->end("Hello World\n");
+});
+$stack->listen(1337);
+echo "Server running at http://127.0.0.1:1337\n";</pre>
+
+    <p>To install, just run this command:</p>
+    <pre class="sh_none">
+% echo '{ "require": { "react/react": "0.0.*" } }' > composer.json
+% composer install</pre>
+
+    <p>To run the server, put the code into a file <code>example.php</code> and execute it with the <code>php</code> program:</p>
+    <pre class="sh_none">
+% php example.php
+Server running at http://127.0.0.1:1337</pre>
+
+</div>
+
+</body>
+</html>
