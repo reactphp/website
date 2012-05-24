@@ -1,12 +1,12 @@
 body {
-    background: #46483e;
+    background: #444B3D;
     color: #eee;
     font-size: 12px;
     line-height: 180%;
     font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Verdana, Tahoma, sans-serif;
     margin: 0;
     padding-top: 40px;
-    border-top: 6px #8cc84b solid;
+    border-top: 6px #45D55C solid;
 }
 
 h1, h2, h3, h4 {
@@ -96,11 +96,11 @@ h1 a, h2 a, h3 a, h4 a
 }
 
 #intro #downloadbutton {
-  background-color: #8BC84B;
+  background-color: #45D55C;
 }
 
 #intro #downloadbutton:hover {
-  background-color: #73a53e;
+  background-color: #60DF48;
 }
 
 #quotes {
@@ -263,7 +263,7 @@ dd {
 
 
 a {
-    color: #690;
+    color: #45D55C;
     text-decoration: none;
 }
 a:hover { text-decoration: underline; }
