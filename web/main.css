@@ -63,7 +63,7 @@ h1 a, h2 a, h3 a, h4 a
 #intro p {
     width: 680px;
     line-height: 180%;
-    padding-top: 30px;
+    padding-top: 20px;
     margin: 0 auto 30px auto;
     font-size: 14px;
 }
@@ -100,7 +100,38 @@ h1 a, h2 a, h3 a, h4 a
 }
 
 #intro #downloadbutton:hover {
-  background-color: #60DF48;
+}
+
+#quotes ul {
+    display: block;
+    width: 775px;
+    margin: 0 auto;
+    padding-top: 0;
+}
+
+#quotes ul li {
+    display: block;
+    text-align: left;
+    width: 180px;
+    float: left;
+    padding-right: 15px;
+    font-size: 11px;
+}
+
+#quotes ul li a {
+    color: #D2D8BA;
+}
+
+#quotes ul li:last-child {
+    padding-right: 0;
+}
+
+#quotes ul li p span {
+    font-size: 10px;
+}
+
+#quotes ul li p {
+  color: #D2D8BA
 }
 
 #quotes {
