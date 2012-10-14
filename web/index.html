@@ -76,16 +76,25 @@
     <p>This simple web server written in React responds with "Hello World" for every request.</p>
     <pre>
 require 'vendor/autoload.php';
-$stack = new React\Espresso\Stack(function ($request, $response) {
+
+$app = function ($request, $response) {
     $response->writeHead(200, array('Content-Type' => 'text/plain'));
     $response->end("Hello World\n");
-});
+};
+
+$loop = React\EventLoop\Factory::create();
+$socket = new React\Socket\Server($loop);
+$http = new React\Http\Server($socket, $loop);
+
+$http->on('request', $app);
 echo "Server running at http://127.0.0.1:1337\n";
-$stack->listen(1337);</pre>
+
+$socket->listen(1337);
+$loop->run();</pre>
 
     <p>To install, just run this command:</p>
     <pre class="sh_none">
-% composer init --require=react/react:0.2.* --minimum-stability=dev -n
+% composer init --require=react/http:0.2.* -n
 % composer install</pre>
 
     <p>To run the server, put the code into a file <code>example.php</code> and execute it with the <code>php</code> program:</p>
