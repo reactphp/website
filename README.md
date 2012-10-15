@@ -11,3 +11,4 @@
 * React/Whois logo: "Magnifying Glass" symbol by Michelle Ann, from [The Noun Project](http://www.thenounproject.com/)
 * React/Async logo: [Rainbow Dash](http://mlp.wikia.com/wiki/Rainbow_Dash)
 * React/Curry logo: Lambda
+* React/Roulette logo: [Shamelessly borrowed from the internet](http://www.evadingmediocrity.com/wp-content/uploads/2008/09/roulette-wheel.gif)
