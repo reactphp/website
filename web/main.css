@@ -328,3 +328,15 @@ a:hover { text-decoration: underline; }
     clear: both;
     visibility: hidden;
 }
+
+#intro .video-links {
+    margin-top: 40px;
+}
+
+#intro .video-links a.button {
+    background-color: #46D2D8;
+}
+
+#intro .video-links a.button:hover {
+    background-color: #66D5DA;
+}
