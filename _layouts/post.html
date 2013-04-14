@@ -1,0 +1,21 @@
+{% include header.html %}
+
+<div id="content" class="blog">
+    <p>
+        <a href="/blog.html">&laquo; Blog</a>
+    </p>
+
+    <div style="float: right;">
+        {{ page.date | date: '%b %d' }}
+    </div>
+
+    <div class="body">
+        {{ content }}
+    </div>
+
+    <p>
+        <a href="/blog.html">&laquo; Blog</a>
+    </p>
+</div>
+
+{% include footer.html %}

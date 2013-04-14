@@ -1,0 +1,2 @@
+markdown: redcarpet
+exclude: Gemfile, Gemfile.lock, README.md, fabfile.py, fabfile.pyc

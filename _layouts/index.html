@@ -1,16 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>React</title>
-    <link rel="stylesheet" href="main.css">
-</head>
-<body>
+{% include header.html %}
 
 <div id="intro">
     <img src="images/logo.png" alt="React" height="66" />
 
-    <p>Event-driven, non-blocking I/O with PHP.</p>
+    <p>Event-driven, non-blocking I/O with PHP.
+        <br /><br />
+        Version: <a href="/2013/04/14/v0.3.0.html">v0.3.0</a></p>
 
         <a href="https://github.com/reactphp/react" class="button" id="downloadbutton">GitHub</a>
         <a href="https://twitter.com/reactphp" class="button">Twitter</a>
@@ -122,5 +117,4 @@ Server running at http://127.0.0.1:1337</pre>
 
 </div>
 
-</body>
-</html>
+{% include footer.html %}

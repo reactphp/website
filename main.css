@@ -340,3 +340,33 @@ a:hover { text-decoration: underline; }
 #intro .video-links a.button:hover {
     background-color: #66D5DA;
 }
+
+#content.blog {
+    width: inherit;
+    padding: 0 100px;
+}
+
+body .blog, #content.blog p {
+    font-size: 16px;
+}
+
+.blog h1 {
+    color: #8c0;
+}
+
+.blog h2 {
+    font-size: 14px;
+}
+
+.blog h3 {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.blog .body {
+    font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Verdana, Tahoma, sans-serif;
+}
+
+.blog .highlight {
+    background: inherit;
+}
