@@ -350,6 +350,16 @@ body .blog, #content.blog p {
     font-size: 15px;
 }
 
+.blog ul.posts {
+    padding-left: 0;
+}
+
+.blog ul.posts li {
+    font-size: 20px;
+    margin-top: 10px;
+    list-style: none;
+}
+
 .blog h1 {
     color: #8c0;
 }
