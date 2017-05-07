@@ -1,0 +1,81 @@
+.box {
+    border: 1px dashed var(--color-background-light);
+    border-radius: 4px;
+    text-align: left;
+    vertical-align: top;
+    padding: 24px;
+    margin-top: 0;
+    margin-bottom: 24px;
+    width: 100%;
+    text-decoration: none;
+    color: inherit;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.box:hover {
+    border-color: var(--color-background);
+    text-decoration: none;
+}
+
+.box p,
+.box ul,
+.box ol,
+.box hr,
+.box h1,
+.box h2,
+.box h3,
+.box h4,
+.box h5,
+.box h6 {
+    margin-bottom: 8px;
+}
+
+.box h1,
+.box h2,
+.box h3,
+.box h4,
+.box h5,
+.box h6 {
+    color:var(--color-key);
+}
+
+.box :first-child {
+    margin-top: 0;
+}
+
+.box :last-child {
+    margin-bottom: 0;
+}
+
+.box__content {
+    flex-grow: 1;
+    color: var(--color-base);
+    text-decoration: none;
+}
+
+.box__content:hover {
+    color: var(--color-base);
+    text-decoration: none;
+}
+
+.box__content:not(:last-child) {
+    margin-bottom: 16px;
+}
+
+.box__link {
+    display: block;
+    font-size: 12px;
+    color: var(--color-key);
+    text-decoration: none;
+}
+
+.box__link [class*="icon"] {
+    color: var(--color-key);
+}
+
+.box__link:hover {
+    color: var(--color-key-light);
+    text-decoration: none;
+}

@@ -1,0 +1,73 @@
+.welcome__intro {
+    padding: 16px 0 136px 0;
+    border-bottom: 1px dashed var(--color-background-light);
+    background-image: radial-gradient(ellipse at center, #fff 0%, var(--color-background-light) 100%);
+    background-size: auto 100%;
+    background-position: 50% 0;
+}
+
+.welcome__intro h1 {
+    font-size: 2em;
+    margin-bottom: 16px;
+    color: var(--color-key);
+}
+
+.welcome__logo {
+    display: block;
+    margin: 0 auto;
+    max-width: 320px;
+}
+
+.welcome__logo svg {
+    /*filter: drop-shadow(0 0 25px #fff);*/
+    display: block;
+    height: 240px;
+}
+
+.welcome__content {
+    padding-top: 16px;
+    display: block;
+}
+
+.welcome__example {
+    display: block;
+    margin: auto;
+    max-width: 720px;
+    margin-top: -160px;
+}
+
+.welcome__example .highlight pre {
+    padding: 32px;
+    box-shadow: 0 0 16px var(--color-background);
+}
+
+.welcome__intro .links a {
+    color: var(--color-base);
+    text-decoration: none;
+}
+
+.welcome__intro .links a:hover {
+    color: var(--color-key);
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .welcome__content {
+        padding: 32px 16px 16px 16px;
+    }
+
+    .welcome__logo svg {
+        height: 160px;
+    }
+
+    .welcome__intro h1 {
+        text-align: center;
+        font-size: 1.6em;
+        margin-bottom: 16px;
+        color: var(--color-key);
+    }
+
+    .welcome__intro .links {
+        text-align: center;
+    }
+}

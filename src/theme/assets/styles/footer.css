@@ -1,0 +1,16 @@
+.footer {
+    background: var(--color-base);
+    padding: 32px;
+    text-align: center;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, .125);
+}
+
+.footer .links a {
+    color: var(--color-background-light);
+    text-decoration: none;
+}
+
+.footer .links a:hover {
+    color: var(--color-green-light);
+    text-decoration: none;
+}

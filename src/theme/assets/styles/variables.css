@@ -1,0 +1,17 @@
+:root {
+    --color-key: #4f5b93;
+    --color-key-light: #a2aacd;
+
+    --color-base: #584b4f;
+    --color-base-light: #afa1a5;
+
+    --color-green: #40a977;
+    --color-green-light: #9ad8bb;
+
+    --color-red: #ba3525;
+    --color-red-light: #e79187;
+
+    --color-background: #d6d1c8;
+    --color-background-light: #eae8e3;
+    --color-background-lighter: #f4f3f1;
+}

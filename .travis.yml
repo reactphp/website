@@ -1,0 +1,31 @@
+language: php
+
+php:
+  - 7.1
+
+branches:
+  only:
+    - master
+
+cache:
+  directories:
+    - $HOME/.composer/cache/files
+    - tmp/components
+
+before_script:
+  - composer install
+
+script:
+  - ./bin/build
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  local_dir: ./tmp/build
+  project_name: "ReactPHP Website"
+  fqdn: $DEPLOY_FQDN
+  repo: $DEPLOY_REPO
+  target_branch: $DEPLOY_TARGET_BRANCH
+  github_token: $GITHUB_TOKEN
+  on:
+    branch: master

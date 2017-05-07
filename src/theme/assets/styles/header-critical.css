@@ -1,0 +1,42 @@
+.header {
+    position: relative;
+    width: 100%;
+    border-bottom: 1px dashed var(--color-background-light);
+    padding: 16px 32px;
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 16px;
+        margin-bottom: 16px;
+    }
+}
+
+.header__logo {
+    display: block;
+    line-height: 1;
+}
+
+.header__logo svg {
+    display: block;
+    height: 16px;
+    width: auto;
+}
+
+.header .links {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 90%;
+}
+
+.header .links a {
+    float: right;
+    color: var(--color-base);
+    text-decoration: none;
+}
+
+.header .links a:hover {
+    color: var(--color-key);
+    text-decoration: none;
+}

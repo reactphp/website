@@ -1,2 +1,4 @@
-*.pyc
-_site
+/node_modules
+/tmp
+/vendor
+/.env

@@ -1,13 +1,35 @@
-# reactphp.org
+Website
+=======
 
-## Logo credits
+Source code of reactphp.org.
 
-* Predis/Async logo: [Redis](http://redis.io/topics/sponsors)
-* DNode-PHP logo: [DNode](https://github.com/substack/dnode)
-* Wisdom logo: [@randjelovich](https://twitter.com/randjelovich) (Milos Randjelovic)
-* React/ZMQ logo: [ZeroMQ](http://www.zeromq.org/)
-* React/Stomp logo: [Stomp](http://stomp.github.com/)
-* React/Promise logo: "Handshake" by Patrick Trouve [The Noun Project](http://www.thenounproject.com/)
-* React/Curry logo: Lambda
-* React/Whois logo: "Magnifying Glass" symbol by Michelle Ann, from [The Noun Project](http://www.thenounproject.com/)
-* React/Roulette logo: [Shamelessly borrowed from the internet](http://www.evadingmediocrity.com/wp-content/uploads/2008/09/roulette-wheel.gif)
+Setup
+-----
+
+1. Copy `.env.dist` to `.env` and add a
+   [personal access token](https://github.com/settings/tokens) to the
+   `GITHUB_TOKEN` entry.
+
+   You don't need to check any of the scopes, `public access` is enough. The
+   build script uses the GitHub API to render markdown files and fetch
+   repository data and using the access token ensures that you don't run into
+   API rate limits.
+
+2. Install dependencies with `$ composer install`.
+
+Auto-Deployment with Travis CI
+------------------------------
+
+The ebiste can be automatically deployed via the Travis CI
+[GitHub Pages Deployment](https://docs.travis-ci.com/user/deployment/pages/)
+feature.
+
+Make sure, the required environment variables are set in the repository settings
+on Travis CI: `GITHUB_TOKEN` 
+([a personal access token](https://docs.travis-ci.com/user/deployment/pages/#Setting-the-GitHub-token)), 
+`DEPLOY_REPO`, `DEPLOY_TARGET_BRANCH` and `DEPLOY_FQDN`.
+
+License
+-------
+
+Released under the [MIT](LICENSE) license.

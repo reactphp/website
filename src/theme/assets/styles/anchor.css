@@ -1,0 +1,31 @@
+.anchor {
+    display: block;
+    float: left;
+    position: absolute;
+    padding-right: 2px;
+    transform: translateX(-100%);
+    text-decoration: none !important;
+}
+
+.anchor:focus {
+    outline: none;
+}
+
+.anchor > * {
+    visibility: hidden;
+}
+
+*:hover > .anchor > * {
+    visibility: visible;
+}
+
+.anchor > *:before {
+    content: '#';
+    font-weight: normal !important;
+    color: var(--color-key-light);
+}
+
+.anchor--disable .anchor > *,
+.anchor.anchor--disable > * {
+    visibility: hidden !important;
+}

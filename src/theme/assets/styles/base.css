@@ -1,0 +1,23 @@
+a {
+    color: var(--color-key);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--color-key-light);
+    text-decoration: underline;
+}
+
+.container--center {
+    text-align: center;
+}
+
+.container--alt {
+    background: var(--color-background-light);
+}
+
+blockquote {
+    padding: 16px 16px 1px 16px;
+    background: var(--color-background-light);
+    border-radius: 4px;
+}
