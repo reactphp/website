@@ -100,6 +100,15 @@ return function (Pimple\Container $container) {
             )
         );
 
+        $twig->addFilter(
+            new \Twig_Filter(
+                'emoji',
+                function ($string) use ($container) {
+                    return \LitEmoji\LitEmoji::encodeUnicode($string);
+                }
+            )
+        );
+
         $twig->addGlobal('container', $container);
 
         $twig->addGlobal(
