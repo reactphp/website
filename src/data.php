@@ -3,7 +3,7 @@
 return [
     'components' => [
         [
-            'title' => 'Event Loop',
+            'title' => 'EventLoop',
             'repository' => 'reactphp/event-loop',
             'category' => 'Core Components'
         ],
@@ -33,7 +33,7 @@ return [
             'category' => 'Protocol Components'
         ],
         [
-            'title' => 'HTTP Client',
+            'title' => 'HTTPClient',
             'repository' => 'reactphp/http-client',
             'category' => 'Protocol Components'
         ],
@@ -48,12 +48,12 @@ return [
             'category' => 'Utility Components'
         ],
         [
-            'title' => 'Promise Timer',
+            'title' => 'PromiseTimer',
             'repository' => 'reactphp/promise-timer',
             'category' => 'Utility Components'
         ],
         [
-            'title' => 'Child Process',
+            'title' => 'ChildProcess',
             'repository' => 'reactphp/child-process',
             'category' => 'Utility Components'
         ],
