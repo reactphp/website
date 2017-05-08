@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c20dd3b442abcc26c46fd45183082362",
+    "content-hash": "57e4615babb44bbfb190a899a6832ef6",
     "packages": [],
     "packages-dev": [
         {
@@ -55,6 +55,43 @@
                 "stream_filter_register"
             ],
             "time": "2015-11-08T23:41:30+00:00"
+        },
+        {
+            "name": "elvanto/litemoji",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/elvanto/litemoji.git",
+                "reference": "b0ab2181cd596c12e8d38a16bbde3e70d4a62c05"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/elvanto/litemoji/zipball/b0ab2181cd596c12e8d38a16bbde3e70d4a62c05",
+                "reference": "b0ab2181cd596c12e8d38a16bbde3e70d4a62c05",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "LitEmoji\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A PHP library simplifying the conversion of unicode, HTML and shortcode emoji.",
+            "keywords": [
+                "emoji",
+                "php-emoji"
+            ],
+            "time": "2017-02-14T01:20:20+00:00"
         },
         {
             "name": "guzzlehttp/psr7",

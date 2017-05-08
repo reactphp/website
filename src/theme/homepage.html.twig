@@ -66,9 +66,9 @@ $loop->run();
                 <div class="grid__unit">
                     <div class="box">
                         <a href="{{ component.name }}/" class="box__content">
-                            <h3>{{ component.title }}</h3>
+                            <h3>{{ component.title|emoji }}</h3>
 
-                            <p>{{ component.description }}</p>
+                            <p>{{ component.description|emoji }}</p>
                         </a>
                         <a href="{{ component.html_url }}" class="box__link">
                             <i class="icon-github" aria-hidden="true"></i> {{ component.repository }}
@@ -92,9 +92,9 @@ $loop->run();
                 <div class="grid__unit">
                     <a href="{{ component.html_url }}" class="box">
                         <div class="box__content">
-                            <h3>{{ component.title }}</h3>
+                            <h3>{{ component.title|emoji }}</h3>
 
-                            <p>{{ component.description }}</p>
+                            <p>{{ component.description|emoji }}</p>
                         </div>
                         <p class="box__link">
                             <i class="icon-github" aria-hidden="true"></i>
@@ -118,9 +118,9 @@ $loop->run();
                 <div class="grid__unit">
                     <a href="{{ article.link }}" class="box">
                         <div class="box__content">
-                            <h3>{{ article.title }}</h3>
+                            <h3>{{ article.title|emoji }}</h3>
 
-                            <p>{{ article.description }}</p>
+                            <p>{{ article.description|emoji }}</p>
                         </div>
                         <p class="box__link">
                             <i class="icon-blog" aria-hidden="true"></i> {{ article.link|display_url }}
