@@ -32,6 +32,9 @@ module.exports = {
     },
     devtool: 'eval',
     devServer: {
-        publicPath: 'http://localhost:8080/_assets/'
+        publicPath: 'http://localhost:8080/_assets/',
+        headers: {
+            'Access-Control-Allow-Origin': '*'
+        }
     }
 };
