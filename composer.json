@@ -1,0 +1,17 @@
+{
+    "name": "react/website",
+    "description": "Source code of reactphp.org",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jan Sorgalla",
+            "email": "jsorgalla@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "jsor/berti": "^2.0",
+        "symfony/filesystem": "^3.2",
+        "symfony/process": "^3.2",
+        "vlucas/phpdotenv": "^2.4"
+    }
+}

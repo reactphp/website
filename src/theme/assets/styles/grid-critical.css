@@ -1,0 +1,38 @@
+.grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 102%;
+    margin-left: -2%;
+}
+
+.grid > * {
+    display: flex;
+    flex: 1 1 0;
+    margin-left: 2%;
+    max-width: 100%;
+}
+
+.grid--4cols > * {
+    flex-basis: 23%;
+}
+
+.grid--3cols > * {
+    flex-basis: 31.33%;
+}
+
+.grid--2cols > * {
+    flex-basis: 48%;
+}
+
+@media (max-width: 768px) {
+    .grid {
+        flex-direction: column;
+    }
+
+    .grid > * {
+        width: 100%;
+        flex: 0 0 auto;
+    }
+}

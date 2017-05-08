@@ -1,0 +1,181 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__ . '/../vendor/autoload.php';
+
+try {
+    (new Dotenv\Dotenv(getcwd()))->load();
+} catch (Dotenv\Exception\InvalidPathException $e) {
+    // Ignore missing .env
+}
+
+$buildDir      = __DIR__ . '/../tmp/build';
+$componentsDir = __DIR__ . '/../tmp/components';
+$deployDir     = __DIR__ . '/../tmp/deploy';
+$configFile    = __DIR__ . '/../config/berti.config.php';
+
+$container = Berti\container();
+
+call_user_func(include $configFile, $container);
+
+function run($command, $cwd = null)
+{
+    $process = new Symfony\Component\Process\Process($command, $cwd);
+    $process->setTty(true);
+
+    $process->mustRun(function ($type, $buffer) {
+        echo $buffer;
+    });
+}
+
+function tag($cwd = null)
+{
+    $process = new Symfony\Component\Process\Process(
+        'git --version',
+        $cwd
+    );
+
+    $process->mustRun();
+
+    list(, , $gitVersion) = explode(' ', trim($process->getOutput()));
+
+    if (version_compare($gitVersion, '2.0.0', '<')) {
+        $process = new Symfony\Component\Process\Process(
+            'git tag -l | sort -V',
+            $cwd
+        );
+    } else {
+        $process = new Symfony\Component\Process\Process(
+            'git tag --sort=v:refname',
+            $cwd
+        );
+    }
+
+    $process->mustRun();
+
+    $tags = explode("\n", trim($process->getOutput()));
+
+    return array_pop($tags);
+}
+
+function component(Symfony\Component\Console\Output\ConsoleOutput $output, $componentsDir, $name, $gitUrl)
+{
+    $componentDir = $componentsDir . DIRECTORY_SEPARATOR . $name;
+
+    if (!is_dir($componentDir)) {
+        run('git clone ' . $gitUrl . ' "' . $componentDir . '"');
+    }
+
+    run('git fetch', $componentDir);
+
+    $tag = tag($componentDir);
+
+    $output->writeln('Latest tag: ' . $tag);
+
+    run('git checkout -f ' . $tag, $componentDir);
+}
+
+$input  = new Symfony\Component\Console\Input\ArgvInput();
+$output = new Symfony\Component\Console\Output\ConsoleOutput();
+
+foreach ($container['react.components'] as $component) {
+    $output->writeln(sprintf(
+        '<comment>Updating component %s...</comment>',
+        $component['repository']
+    ));
+
+    component(
+        $output,
+        $componentsDir,
+        $component['name'],
+        $component['git_url']
+    );
+
+    $output->writeln('<info>Done.</info>');
+}
+
+if ($input->hasParameterOption('--dev-server')) {
+    call_user_func(
+        $container['server'],
+        $output,
+        [
+            'BERTI_CONFIG' => $configFile,
+            'BERTI_BUILD_DIR' => $buildDir,
+            'BERTI_USE_ASSET_DEV_SERVER' => $input->hasParameterOption('--use-asset-dev-server') ? 'true' : 'false'
+        ],
+        '127.0.0.1:8000'
+    );
+
+    exit;
+}
+
+(new Symfony\Component\Filesystem\Filesystem())->remove($buildDir);
+
+call_user_func(
+    $container['generator'],
+    $buildDir,
+    $output
+);
+
+if ($input->hasParameterOption('--deploy')) {
+    (function (Symfony\Component\Console\Output\OutputInterface $output, $buildDir, $deployDir) {
+        $deployRepository = getenv('DEPLOY_REPO');
+
+        if (!$deployRepository) {
+            $output->writeln('<error>No deploy repository configured via the DEPLOY_REPO env variable, skipping deployment.</error>');
+            return;
+        }
+
+        $deployRepositoryUrl = sprintf(
+            'git@github.com:%s',
+            $deployRepository
+        );
+
+        $output->writeln('<info>Starting deployment to ' . $deployRepositoryUrl . '.</info>');
+
+        $filesystem = new Symfony\Component\Filesystem\Filesystem();
+
+        $filesystem->remove($deployDir);
+        $filesystem->mkdir($deployDir);
+
+        run('git clone ' . $deployRepositoryUrl . ' "' . $deployDir . '"');
+
+        $deployBranch = getenv('DEPLOY_TARGET_BRANCH');
+
+        if (!$deployBranch) {
+            $deployBranch = 'gh-pages';
+            $output->writeln('<comment>No deploy branch configured via the DEPLOY_TARGET_BRANCH env variable, using default "gh-pages" branch.</comment>');
+        }
+
+        try {
+            run('git checkout ' . $deployBranch, $deployDir);
+        } catch (Symfony\Component\Process\Exception\ProcessFailedException $e) {
+            run('git checkout --orphan ' . $deployBranch, $deployDir);
+        }
+
+        $output->write('<comment>Copying generated website...</comment>');
+
+        $finder = new Symfony\Component\Finder\Finder();
+        $finder
+            ->files()
+            ->in($deployDir)
+            ->ignoreDotFiles(false)
+            ->ignoreVCS(true);
+
+        $filesystem->remove($finder);
+        $filesystem->mirror($buildDir, $deployDir);
+
+        $output->writeln('<info>Done.</info>');
+
+        try {
+            run('git add --all . && git commit -m "Update website build"', $deployDir);
+        } catch (Symfony\Component\Process\Exception\ProcessFailedException $e) {
+            $output->writeln('<error>No changes in this build, skipping deployment.</error>');
+            return;
+        }
+
+        run('git push origin ' . $deployBranch, $deployDir);
+
+        $output->writeln('<info>Deployment finished.</info>');
+    })($output, $buildDir, $deployDir);
+}

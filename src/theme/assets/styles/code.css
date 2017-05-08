@@ -1,0 +1,78 @@
+tt, code, pre {
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    font-size: 12px
+}
+
+code, tt {
+    padding: 0;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+    margin: 0;
+    background-color: rgba(0, 0, 0, 0.04);
+    border-radius: 4px;
+}
+
+code::before, code::after, tt::before, tt::after {
+    letter-spacing: -0.15em;
+    content: "\00a0"
+}
+
+code br, tt br {
+    display: none
+}
+
+del code {
+    text-decoration: inherit
+}
+
+pre {
+    word-wrap: normal;
+    text-align: left;
+}
+
+pre > code {
+    padding: 0;
+    margin: 0;
+    font-size: 100%;
+    word-break: normal;
+    white-space: pre;
+    background: transparent;
+    border: 0
+}
+
+.highlight {
+    margin-bottom: 16px;
+}
+
+.highlight pre {
+    margin-bottom: 0;
+    word-break: normal
+}
+
+.highlight pre, pre {
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+    border: 1px dashed var(--color-background-light);
+    background-color: #fcfcfc;
+    color: var(--color-base);
+    text-shadow: none !important;
+    border-radius: 4px
+}
+
+pre code, pre tt {
+    display: inline;
+    max-width: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    line-height: inherit;
+    word-wrap: normal;
+    background-color: transparent;
+    border: 0
+}
+
+pre code::before, pre code::after, pre tt::before, pre tt::after {
+    content: normal
+}
