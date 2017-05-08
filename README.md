@@ -20,7 +20,7 @@ Setup
 Auto-Deployment with Travis CI
 ------------------------------
 
-The ebiste can be automatically deployed via the Travis CI
+The website can be automatically deployed via the Travis CI
 [GitHub Pages Deployment](https://docs.travis-ci.com/user/deployment/pages/)
 feature.
 
