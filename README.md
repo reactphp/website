@@ -33,3 +33,7 @@ License
 -------
 
 Released under the [MIT](LICENSE) license.
+
+**Note:** The logo and the brand name are not MIT licensed.
+Please check their [LICENSE](https://github.com/reactphp/branding/blob/master/LICENSE)
+for usage guidelines.
