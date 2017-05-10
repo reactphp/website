@@ -9,17 +9,17 @@
 
         <meta name="description" content="{% spaceless %}{% block meta_description %}Event-driven, non-blocking I/O with PHP.{% endblock %}{% endspaceless %}">
 
-        <link rel="icon" type="image/png" href="{{ berti.relative_root }}favicon-32x32.png" sizes="32x32">
-        <link rel="icon" type="image/png" href="{{ berti.relative_root }}favicon-180x180.png" sizes="180x180">
-        <link rel="icon" type="image/png" href="{{ berti.relative_root }}favicon-192x192.png" sizes="192x192">
-        <link rel="icon" type="image/png" href="{{ berti.relative_root }}favicon-270x270.png" sizes="270x270">
-        <link rel="icon" type="image/png" href="{{ berti.relative_root }}favicon-512x512.png" sizes="512x512">
+        <link rel="icon" type="image/png" href="{{ base_url }}/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="{{ base_url }}/favicon-180x180.png" sizes="180x180">
+        <link rel="icon" type="image/png" href="{{ base_url }}/favicon-192x192.png" sizes="192x192">
+        <link rel="icon" type="image/png" href="{{ base_url }}/favicon-270x270.png" sizes="270x270">
+        <link rel="icon" type="image/png" href="{{ base_url }}/favicon-512x512.png" sizes="512x512">
 
-        <link rel="apple-touch-icon" type="image/png" href="{{ berti.relative_root }}favicon-180x180.png" sizes="180x180">
-        <meta name="msapplication-TileImage" content="{{ berti.relative_root }}favicon-270x270.png">
+        <link rel="apple-touch-icon" type="image/png" href="{{ base_url }}/favicon-180x180.png" sizes="180x180">
+        <meta name="msapplication-TileImage" content="{{ base_url }}/favicon-270x270.png">
 
         <meta name="theme-color" content="#efeae1">
-        <meta property="og:image" content="{{ berti.relative_root }}og-image.png">
+        <meta property="og:image" content="{{ base_url }}/og-image.png">
 
     {% if not use_asset_dev_server %}
         <script>window.__assets = '{{ berti.relative_root }}assets/';</script>

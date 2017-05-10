@@ -95,15 +95,21 @@ foreach ($container['react.components'] as $component) {
 }
 
 if ($input->hasParameterOption('--dev-server')) {
+    $address = $input->getParameterOption(
+        '--dev-server-address',
+        '127.0.0.1:8000'
+    );
+
     call_user_func(
         $container['server'],
         $output,
         [
+            'DEPLOY_URL' => 'http://' . $address,
             'BERTI_CONFIG' => $configFile,
             'BERTI_BUILD_DIR' => $buildDir,
             'BERTI_USE_ASSET_DEV_SERVER' => $input->hasParameterOption('--use-asset-dev-server') ? 'true' : 'false'
         ],
-        '127.0.0.1:8000'
+        $address
     );
 
     exit;
