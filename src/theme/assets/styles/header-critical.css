@@ -1,14 +1,18 @@
 .header {
-    position: relative;
     width: 100%;
     border-bottom: 1px dashed var(--color-background-light);
     padding: 16px 32px;
-}
 
-@media (max-width: 768px) {
-    .header {
+    @media (max-width: 768px) {
         padding: 16px;
         margin-bottom: 16px;
+    }
+
+    & .wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
 }
 
@@ -23,20 +27,17 @@
     width: auto;
 }
 
-.header .links {
+.header__search {
+    margin: 0;
     position: absolute;
-    top: 0;
     right: 0;
-    font-size: 90%;
-}
+    z-index: 999;
 
-.header .links a {
-    float: right;
-    color: var(--color-base);
-    text-decoration: none;
-}
+    & input {
+        width: 320px;
 
-.header .links a:hover {
-    color: var(--color-key);
-    text-decoration: none;
+        @media (max-width: 768px) {
+            width: calc(100vw - 32px);
+        }
+    }
 }

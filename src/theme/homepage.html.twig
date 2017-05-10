@@ -56,6 +56,16 @@ $loop->run();
 
     <hr>
 
+    <div class="container container--center">
+        <div class="wrapper wrapper--narrow">
+            <form>
+                <input type="search" class="searchbox searchbox--large" data-docsearch placeholder="Search documentation...">
+            </form>
+        </div>
+    </div>
+
+    <hr>
+
 {% for category, components in container['react.components_by_category'] %}
     <div class="container container--center">
         <div class="wrapper">
