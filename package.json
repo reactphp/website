@@ -21,6 +21,7 @@
     }
   },
   "dependencies": {
+    "docsearch.js": "^2.3.3",
     "fontfaceobserver": "^2.0.9"
   },
   "devDependencies": {

@@ -17,7 +17,7 @@ body {
     background-color: #fff;
 }
 
-p, ul, ol, hr, h1, h2, h3, h4, h5, h6, blockquote {
+p, ul, ol, hr, h1, h2, h3, h4, h5, h6, form, fieldset, blockquote {
     margin: 0 0 16px 0;
 }
 
@@ -106,7 +106,6 @@ h4:not(:first-child) {
 }
 
 .wrapper {
-    position: relative;
     max-width: 960px;
     margin: auto;
 }
