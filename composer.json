@@ -9,7 +9,7 @@
         }
     ],
     "require-dev": {
-        "jsor/berti": "^2.0",
+        "jsor/berti": "^2.1",
         "symfony/filesystem": "^3.2",
         "symfony/process": "^3.2",
         "vlucas/phpdotenv": "^2.4",
