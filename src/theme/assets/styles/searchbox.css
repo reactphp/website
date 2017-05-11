@@ -3,16 +3,10 @@
 
     &,
     &:focus {
-        appearance: none;
         background: var(--color-background-lighter) url(../img/search.png) no-repeat 10px center;
         background-size: 16px 16px;
-        padding: 4px 8px 4px 32px;
-        font-size: 16px;
-        line-height: 24px;
         border-radius: 4px;
-        color: var(--color-base);
         outline: none;
-        border: 1px solid var(--color-background-light);
         transition: all .35s cubic-bezier(0.23, 1, 0.32, 1);
     }
 
@@ -37,10 +31,7 @@
 
 .searchbox--collapsed {
     &:not(:focus) {
-        background-color: transparent;
-        border-color: transparent;
         cursor: pointer;
-        width: 32px !important;
 
         &::-webkit-search-decoration {
             display: none;

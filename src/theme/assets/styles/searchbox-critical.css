@@ -1,0 +1,21 @@
+.searchbox {
+    width: 100%;
+
+    &,
+    &:focus {
+        appearance: none;
+        padding: 4px 8px 4px 32px;
+        font-size: 16px;
+        line-height: 24px;
+        color: var(--color-base);
+        border: 1px solid var(--color-background-light);
+    }
+}
+
+.searchbox--collapsed {
+    &:not(:focus) {
+        background-color: transparent;
+        border-color: transparent;
+        width: 32px !important;
+    }
+}
