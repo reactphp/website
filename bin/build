@@ -13,6 +13,7 @@ $buildDir      = __DIR__ . '/../tmp/build';
 $componentsDir = __DIR__ . '/../tmp/components';
 $deployDir     = __DIR__ . '/../tmp/deploy';
 $configFile    = __DIR__ . '/../config/berti.config.php';
+$staticDir     = __DIR__ . '/../src/static-files';
 
 $container = Berti\container();
 
@@ -106,7 +107,7 @@ if ($input->hasParameterOption('--dev-server')) {
         [
             'DEPLOY_URL' => 'http://' . $address,
             'BERTI_CONFIG' => $configFile,
-            'BERTI_BUILD_DIR' => $buildDir,
+            'BERTI_BUILD_DIR' => $staticDir,
             'BERTI_USE_ASSET_DEV_SERVER' => $input->hasParameterOption('--use-asset-dev-server') ? 'true' : 'false'
         ],
         $address
