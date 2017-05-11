@@ -7,6 +7,7 @@
   "license": "MIT",
   "scripts": {
     "build": "rimraf ./src/static-files/assets/* && webpack --config ./config/webpack.config.js",
+    "watch": "rimraf ./src/static-files/assets/* && webpack --config ./config/webpack.config.js --watch",
     "dev-server": "webpack-dev-server --config ./config/webpack-dev-server.config.js --hot",
     "update-webfonts": "webfont-dl https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700 --out ./src/theme/assets/fonts/fonts.css --woff1=link --woff2=omit --svg=omit --ttf=omit --eot=omit"
   },
