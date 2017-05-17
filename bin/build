@@ -29,37 +29,7 @@ function run($command, $cwd = null)
     });
 }
 
-function tag($cwd = null)
-{
-    $process = new Symfony\Component\Process\Process(
-        'git --version',
-        $cwd
-    );
-
-    $process->mustRun();
-
-    list(, , $gitVersion) = explode(' ', trim($process->getOutput()));
-
-    if (version_compare($gitVersion, '2.0.0', '<')) {
-        $process = new Symfony\Component\Process\Process(
-            'git tag -l | sort -V',
-            $cwd
-        );
-    } else {
-        $process = new Symfony\Component\Process\Process(
-            'git tag --sort=v:refname',
-            $cwd
-        );
-    }
-
-    $process->mustRun();
-
-    $tags = explode("\n", trim($process->getOutput()));
-
-    return array_pop($tags);
-}
-
-function component(Symfony\Component\Console\Output\ConsoleOutput $output, $componentsDir, $name, $gitUrl)
+function component(Symfony\Component\Console\Output\ConsoleOutput $output, $componentsDir, $name, $gitUrl, $latestTag)
 {
     $componentDir = $componentsDir . DIRECTORY_SEPARATOR . $name;
 
@@ -69,11 +39,9 @@ function component(Symfony\Component\Console\Output\ConsoleOutput $output, $comp
 
     run('git fetch', $componentDir);
 
-    $tag = tag($componentDir);
+    $output->writeln('Latest tag: ' . $latestTag);
 
-    $output->writeln('Latest tag: ' . $tag);
-
-    run('git checkout -f ' . $tag, $componentDir);
+    run('git checkout -f ' . $latestTag, $componentDir);
 }
 
 $input  = new Symfony\Component\Console\Input\ArgvInput();
@@ -89,7 +57,8 @@ foreach ($container['react.components'] as $component) {
         $output,
         $componentsDir,
         $component['name'],
-        $component['git_url']
+        $component['git_url'],
+        $component['tags'][0]['name'] ?? 'master'
     );
 
     $output->writeln('<info>Done.</info>');

@@ -12,12 +12,13 @@ return function (Pimple\Container $container) {
 
             return array_merge(
                 $client->repo()->show($username, $repository),
+                ['tags' => $client->repo()->tags($username, $repository)],
                 $component
             );
         }, $data['components']);
     };
 
-    $container['react.components_by_category'] = function ($container) use ($data) {
+    $container['react.components_by_category'] = function ($container) {
         $components = $container['react.components'];
         $byCategory = [];
 
