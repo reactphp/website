@@ -28,26 +28,26 @@
         <div class="container container--center">
             <div class="wrapper">
                 <div class="welcome__example">
-            {%  markdown %}
+            {% markdown %}
 ```php
-require 'vendor/autoload.php';
-
-$app = function ($request, $response) {
-    $response->writeHead(200, array('Content-Type' => 'text/plain'));
-    $response->end("Hello World\n");
-};
-
 $loop = React\EventLoop\Factory::create();
-$socket = new React\Socket\Server($loop);
-$http = new React\Http\Server($socket, $loop);
 
-$http->on('request', $app);
-echo "Server running at http://127.0.0.1:1337\n";
+$server = new React\Http\Server(function (Psr\Http\Message\ServerRequestInterface $request) {
+    return new React\Http\Response(
+        200,
+        array('Content-Type' => 'text/plain'),
+        "Hello World!\n"
+    );
+});
 
-$socket->listen(1337);
+$socket = new React\Socket\Server(8080, $loop);
+$server->listen($socket);
+
+echo "Server running at http://127.0.0.1:8080\n";
+
 $loop->run();
 ```
-            {%  endmarkdown %}
+            {% endmarkdown %}
                     <p>This simple web server written in ReactPHP responds with "Hello World" for every request.</p>
                 </div>
             </div>
