@@ -120,6 +120,7 @@ if ($input->hasParameterOption('--dev-server')) {
 
 call_user_func(
     $container['generator'],
+    getcwd(),
     $buildDir,
     $output
 );
