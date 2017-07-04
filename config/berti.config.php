@@ -50,6 +50,22 @@ return function (Pimple\Container $container) {
     $container['react.articles'] = $data['articles'];
     $container['react.talks'] = $data['talks'];
 
+    $container['github.url_generator'] = $container->extend('github.url_generator', function (callable $urlGenerator, $container){
+        return function (string $repository, string $url, string $cwd = null) use ($urlGenerator, $container) {
+            $components = array_filter($container['react.components'], function ($component) use ($repository) {
+                return $component['full_name'] === $repository;
+            });
+
+            $component = reset($components);
+
+            if (isset($component['tags'][0]['name'])) {
+                return 'https://github.com/' . $repository . '/blob/' . $component['tags'][0]['name'] . '/' . ltrim($url, '/');
+            }
+
+            return $urlGenerator($repository, $url, $cwd);
+        };
+    });
+
     $container['template.theme'] = __DIR__ . '/../src/theme';
 
     $container['template.map'] = [
