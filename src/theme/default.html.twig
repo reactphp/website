@@ -22,6 +22,9 @@
 
     {% if not use_asset_dev_server %}
         <script>window.__assets = '{{ berti.relative_root }}assets/';</script>
+        <link rel="preload" href="{{ berti.relative_root }}assets/{{ asset_manifest['sourcesanspro-regular.woff'] }}" as="font" type="font/woff" crossorigin>
+        <link rel="preload" href="{{ berti.relative_root }}assets/{{ asset_manifest['sourcesanspro-bold.woff'] }}" as="font" type="font/woff" crossorigin>
+
         <style>{{ embed(berti.build_dir ~ '/assets/main-critical.css', berti.relative_root ~ 'assets/')|raw }}</style>
         <script>{{ embed(berti.build_dir ~ '/assets/main-critical.js')|raw }}</script>
     {% endif %}

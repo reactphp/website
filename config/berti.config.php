@@ -129,6 +129,14 @@ return function (Pimple\Container $container) {
         $twig->addGlobal('container', $container);
 
         $twig->addGlobal(
+            'asset_manifest',
+            json_decode(
+                file_get_contents(__DIR__.'/../src/static-files/assets/manifest.json'),
+                true
+            )
+        );
+
+        $twig->addGlobal(
             'use_asset_dev_server',
             'true' === getenv('BERTI_USE_ASSET_DEV_SERVER')
         );

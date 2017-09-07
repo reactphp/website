@@ -1,2 +1,2 @@
-require('./fonts/fonts-critical.js');
+require('./fonts/fonts.css');
 require('./styles/styles-critical.css');

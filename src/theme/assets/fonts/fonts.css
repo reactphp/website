@@ -2,9 +2,9 @@
   font-family: 'Source Sans Pro';
   font-style: normal;
   font-weight: 400;
-  src: local("Source Sans Pro"), 
+  src: local("Source Sans Pro Regular"), 
     local("SourceSansPro-Regular"), 
-    url("sourcesanspro-29c9632b40abe339a91d1d90eea2880453408a62.woff") format("woff");
+    url("sourcesanspro-regular.woff") format("woff");
 }
 
 @font-face {
@@ -13,6 +13,6 @@
   font-weight: 700;
   src: local("Source Sans Pro Bold"), 
     local("SourceSansPro-Bold"), 
-    url("sourcesanspro-73b7bf7e885c0183c7bd8d4aa0388923e555c5db.woff") format("woff");
+    url("sourcesanspro-bold.woff") format("woff");
 }
 
