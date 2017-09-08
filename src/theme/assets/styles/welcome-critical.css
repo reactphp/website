@@ -34,6 +34,7 @@
     margin: auto;
     max-width: 800px;
     margin-top: -160px;
+    background: #fcfcfc;
 }
 
 .welcome__example .highlight pre {

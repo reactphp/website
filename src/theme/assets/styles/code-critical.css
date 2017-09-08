@@ -1,0 +1,11 @@
+tt, code, pre {
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+tt, code {
+    font-size: 12px
+}
+
+pre {
+    font-size: 85%;
+}
