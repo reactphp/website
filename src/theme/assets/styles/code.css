@@ -47,7 +47,6 @@ pre > code {
 .highlight pre, pre {
     padding: 16px;
     overflow: auto;
-    line-height: 1.45;
     border: 1px dashed var(--color-background-light);
     background-color: #fcfcfc;
     color: var(--color-base);

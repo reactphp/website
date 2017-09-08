@@ -22,11 +22,17 @@
 
     {% if not use_asset_dev_server %}
         <script>window.__assets = '{{ berti.relative_root }}assets/';</script>
+
         <link rel="preload" href="{{ berti.relative_root }}assets/{{ asset_manifest['sourcesanspro-regular.woff'] }}" as="font" type="font/woff" crossorigin>
         <link rel="preload" href="{{ berti.relative_root }}assets/{{ asset_manifest['sourcesanspro-bold.woff'] }}" as="font" type="font/woff" crossorigin>
 
-        <style>{{ embed(berti.build_dir ~ '/assets/main-critical.css', berti.relative_root ~ 'assets/')|raw }}</style>
-        <script>{{ embed(berti.build_dir ~ '/assets/main-critical.js')|raw }}</script>
+        <style>{{ embed(berti.build_dir ~ '/assets/' ~ asset_manifest['main-critical.css'], berti.relative_root ~ 'assets/')|raw }}</style>
+        <link rel="preload" href="{{ berti.relative_root }}assets/{{ asset_manifest['main.css'] }}" as="style" onload="this.rel='stylesheet'">
+
+        <script>{{ embed(berti.build_dir ~ '/assets/' ~ asset_manifest['main-critical.js'])|raw }}</script>
+        <script async src="{{ berti.relative_root }}assets/{{ asset_manifest['main.js'] }}"></script>
+    {% else %}
+        <script src="http://localhost:8080/_assets/main.js"></script>
     {% endif %}
     </head>
 
@@ -63,13 +69,5 @@
             </div>
         </footer>
     {% endblock %}
-
-    {% if not use_asset_dev_server %}
-        <script>window.__assets = '{{ berti.relative_root }}assets/';</script>
-        <link rel="stylesheet" href="{{ berti.relative_root ~ 'assets/main.css' }}">
-        <script async src="{{ berti.relative_root ~ 'assets/main.js' }}"></script>
-    {% else %}
-        <script src="http://localhost:8080/_assets/main.js"></script>
-    {% endif %}
     </body>
 </html>

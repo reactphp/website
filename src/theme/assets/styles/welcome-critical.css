@@ -34,7 +34,11 @@
     margin: auto;
     max-width: 800px;
     margin-top: -160px;
-    background: #fcfcfc;
+
+    & pre {
+        background: #fcfcfc;
+        border: 1px dashed #eae8e3;
+    }
 }
 
 .welcome__example .highlight pre {
