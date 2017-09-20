@@ -21,7 +21,7 @@
         <meta property="og:image" content="{{ base_url }}/og-image.png">
 
     {% if not use_asset_dev_server %}
-        <script>window.__assets = '{{ berti.relative_root }}assets/';</script>
+        <script>window.__assets = '{{ berti.relative_root }}assets/';window.Promise||document.write('<script src="{{ berti.relative_root }}assets/{{ asset_manifest['promise-polyfill.js'] }}"><\/script>')</script>
 
         <link rel="preload" href="{{ berti.relative_root }}assets/{{ asset_manifest['sourcesanspro-regular.woff'] }}" as="font" type="font/woff" crossorigin>
         <link rel="preload" href="{{ berti.relative_root }}assets/{{ asset_manifest['sourcesanspro-bold.woff'] }}" as="font" type="font/woff" crossorigin>

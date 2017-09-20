@@ -5,6 +5,7 @@ const ManifestPlugin = require('webpack-manifest-plugin');
 
 module.exports = {
     entry: {
+        'promise-polyfill': 'es6-promise/auto',
         'main-critical': [
             path.resolve(process.cwd(), 'src/theme/assets/webpack-public-path.js'),
             path.resolve(process.cwd(), 'src/theme/assets/main-critical.js')
