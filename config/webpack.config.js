@@ -23,12 +23,6 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /cssrelpreload\.js$/,
-                use: [
-                    'imports-loader?this=>window'
-                ]
-            },
-            {
                 test: /\.css$/,
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
