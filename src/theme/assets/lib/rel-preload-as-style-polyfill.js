@@ -21,15 +21,21 @@ export function polyfill(win) {
 
             link.rel = '';
 
-            setTimeout(function() {
-                var newLink = doc.createElement('link');
+            var media = link.getAttribute('media') || 'all';
+            var newLink = doc.createElement('link');
 
-                newLink.rel = 'stylesheet';
-                newLink.href = link.href;
-                newLink.media = link.getAttribute('media') || 'all';
+            function final() {
+                newLink.media = media;
+                newLink.removeEventListener('load', final);
+            }
 
-                link.parentNode.insertBefore(newLink, link.nextSibling || link);
-            }, 0);
+            newLink.rel = 'stylesheet';
+            newLink.href = link.href;
+            newLink.media = 'only x';
+
+            newLink.addEventListener('load', final);
+
+            link.parentNode.insertBefore(newLink, link.nextSibling || link);
         }
     }
 
