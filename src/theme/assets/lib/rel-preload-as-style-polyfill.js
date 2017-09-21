@@ -1,6 +1,3 @@
-/**
- * Note, that the polyfill does **not** load CSS files asynchronously.
- */
 export function supports(win) {
     try {
         return (win || window).document.createElement('link').relList.supports('preload');
@@ -14,18 +11,17 @@ export function polyfill(win) {
     var doc = w.document;
 
     function poly() {
-        var links = w.document.querySelectorAll('link[rel="preload"][as="style"]');
+        var links = doc.querySelectorAll('link[rel="preload"][as="style"]');
 
         for (var i = 0; i < links.length; i++) {
             var link = links[i];
 
             link.rel = '';
 
-            var media = link.getAttribute('media') || 'all';
             var newLink = doc.createElement('link');
 
             function final() {
-                newLink.media = media;
+                newLink.media = link.getAttribute('media') || 'all';
                 newLink.removeEventListener('load', final);
             }
 
@@ -41,12 +37,14 @@ export function polyfill(win) {
 
     poly();
 
-    var run = w.setInterval(poly, 300);
+    if (doc.readyState !== "complete") {
+        var run = w.setInterval(poly, 300);
 
-    w.addEventListener('load', function() {
-        poly();
-        w.clearInterval(run);
-    });
+        w.addEventListener('load', function() {
+            poly();
+            w.clearInterval(run);
+        });
+    }
 }
 
 if (!supports()) {
