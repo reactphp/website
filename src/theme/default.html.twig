@@ -70,6 +70,8 @@
         </footer>
     {% endblock %}
 
+{% if not use_asset_dev_server %}
     <script async src="{{ berti.relative_root }}assets/{{ asset_manifest['main.js'] }}"></script>
+{% endif %}
     </body>
 </html>
