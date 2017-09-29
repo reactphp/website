@@ -12,13 +12,16 @@
     "update-webfonts": "webfont-dl https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700 --out ./src/theme/assets/fonts/fonts.css --woff1=link --woff2=omit --svg=omit --ttf=omit --eot=omit"
   },
   "browserslist": [
-    "> 1%",
-    "last 2 versions"
+    ">1%",
+    "last 4 versions",
+    "Firefox ESR",
+    "not ie < 10"
   ],
   "postcss": {
     "plugins": {
       "postcss-import": {},
-      "postcss-cssnext": {}
+      "postcss-cssnext": {},
+      "postcss-flexbugs-fixes": {}
     }
   },
   "dependencies": {
@@ -31,6 +34,7 @@
     "file-loader": "^0.11.2",
     "imports-loader": "^0.7.1",
     "postcss-cssnext": "^2.11.0",
+    "postcss-flexbugs-fixes": "^3.2.0",
     "postcss-import": "^10.0.0",
     "postcss-loader": "^2.0.6",
     "rimraf": "^2.6.1",

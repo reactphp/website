@@ -21,16 +21,16 @@
         <meta property="og:image" content="{{ base_url }}/og-image.png">
 
     {% if not use_asset_dev_server %}
-        <script>window.__assets = '{{ berti.relative_root }}assets/';window.Promise||document.write('<script src="{{ berti.relative_root }}assets/{{ asset_manifest['promise-polyfill.js'] }}"><\/script>')</script>
+        <script>window.__assets = '{{ berti.relative_root }}assets/';</script>
 
         <link rel="preload" href="{{ berti.relative_root }}assets/{{ asset_manifest['sourcesanspro-regular.woff'] }}" as="font" type="font/woff" crossorigin>
         <link rel="preload" href="{{ berti.relative_root }}assets/{{ asset_manifest['sourcesanspro-bold.woff'] }}" as="font" type="font/woff" crossorigin>
 
         <style>{{ embed(berti.build_dir ~ '/assets/' ~ asset_manifest['main-critical.css'], berti.relative_root ~ 'assets/')|raw }}</style>
         <link rel="preload" href="{{ berti.relative_root }}assets/{{ asset_manifest['main.css'] }}" as="style" onload="this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="{{ berti.relative_root }}assets/{{ asset_manifest['main.css'] }}"></noscript>
 
         <script>{{ embed(berti.build_dir ~ '/assets/' ~ asset_manifest['main-critical.js'])|raw }}</script>
-        <script async src="{{ berti.relative_root }}assets/{{ asset_manifest['main.js'] }}"></script>
     {% else %}
         <script src="http://localhost:8080/_assets/main.js"></script>
     {% endif %}
@@ -69,5 +69,7 @@
             </div>
         </footer>
     {% endblock %}
+
+    <script async src="{{ berti.relative_root }}assets/{{ asset_manifest['main.js'] }}"></script>
     </body>
 </html>

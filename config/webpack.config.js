@@ -5,19 +5,19 @@ const ManifestPlugin = require('webpack-manifest-plugin');
 
 module.exports = {
     entry: {
-        'promise-polyfill': 'es6-promise/auto',
         'main-critical': [
             path.resolve(process.cwd(), 'src/theme/assets/webpack-public-path.js'),
             path.resolve(process.cwd(), 'src/theme/assets/main-critical.js')
         ],
         main: [
             path.resolve(process.cwd(), 'src/theme/assets/webpack-public-path.js'),
+            path.resolve(process.cwd(), 'src/theme/assets/promise-polyfill.js'),
             path.resolve(process.cwd(), 'src/theme/assets/main.js')
         ]
     },
     output: {
         path: path.resolve(process.cwd(), 'src/static-files/assets'),
-        filename: '[name].js',
+        filename: '[name].[chunkhash].js',
         chunkFilename: '[name].[chunkhash].js'
     },
     module: {
@@ -43,7 +43,7 @@ module.exports = {
         ]
     },
     plugins: [
-        new ExtractTextPlugin('[name].css'),
+        new ExtractTextPlugin('[name].[chunkhash].css'),
         new webpack.optimize.UglifyJsPlugin({
             output: {
                 comments: false
