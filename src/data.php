@@ -100,6 +100,11 @@ return [
             'description' => 'Bring High Performance Into Your PHP App (with ReactPHP).',
             'link' => 'http://marcjschmidt.de/blog/2014/02/08/php-high-performance.html',
         ],
+        [
+            'title' => 'Sergey Zhuk',
+            'description' => 'A series of articles covering ReactPHP: from the basics to the real application examples.',
+            'link' => 'http://seregazhuk.github.io/reactphp-series',
+        ],
     ],
     'talks' => [
         [
