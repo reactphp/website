@@ -1,0 +1,8 @@
+@import "../../styles/variables.css";
+
+.off-canvas-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    transform: translate3d(calc(100% + 5px), 0, 0);
+}

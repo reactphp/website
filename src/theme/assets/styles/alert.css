@@ -1,38 +1,21 @@
-a {
-    color: var(--color-key);
-}
-
-a:hover {
-    color: var(--color-key-light);
-    text-decoration: underline;
-}
-
-.container--center {
-    text-align: center;
-}
-
-.container--alt {
-    background: var(--color-background-light);
-}
-
-blockquote {
+.alert {
     padding: 16px 16px 16px 24px;
-    border-left: 4px solid var(--color-key);
+    border-left: 4px solid var(--color-red);
     border-radius: 4px;
     background-color: var(--color-background-lighter);
     box-shadow: var(--box-shadow-lighter);
     position: relative;
-    font-size: .9rem;
+    font-size: .9em;
 
     &:before {
-        content: 'ℹ︎';
+        content: '!';
         position: absolute;
         top: 12px;
         left: -14px;
         display: block;
         width: 24px;
         height: 24px;
-        background: var(--color-key);
+        background: var(--color-red);
         font-size: 12px;
         padding: 0 4px;
         box-sizing: border-box;
@@ -41,6 +24,10 @@ blockquote {
         color: #fff;
         line-height: 22px;
         border-radius: 50%;
+    }
+
+    & a {
+        color: var(--color-red);
     }
 
     & :last-child {

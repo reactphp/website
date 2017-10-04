@@ -7,12 +7,35 @@ return function (Pimple\Container $container) {
         /** @var Github\Client $client */
         $client = $container['github.client'];
 
-        return array_map(function($component) use ($client) {
-            list($username, $repository) = explode('/', $component['repository']);
+        return array_map(function ($component) use ($client) {
+            [$username, $repository] = explode('/', $component['repository']);
+
+            $tags = $client->repo()->tags($username, $repository);
+
+            $versions = array_filter(
+                array_map(function ($tag) {
+                    return $tag['name'];
+                }, $tags),
+                function ($version) use ($component) {
+                    if (!isset($component['exclude_versions'])) {
+                        return true;
+                    }
+
+                    return !in_array($version, (array) $component['exclude_versions'], true);
+                }
+            );
+
+            $component['versions'] = array_values($versions);
+
+            $response = $client->getHttpClient()->get(
+                'repos/' . $component['repository'],
+                [
+                    'Accept' => 'application/vnd.github.drax-preview+json'
+                ]
+            );
 
             return array_merge(
-                $client->repo()->show($username, $repository),
-                ['tags' => $client->repo()->tags($username, $repository)],
+                Github\HttpClient\Message\ResponseMediator::getContent($response),
                 $component
             );
         }, $data['components']);
@@ -72,6 +95,73 @@ return function (Pimple\Container $container) {
         'index.html' => 'homepage.html.twig'
     ];
 
+    $container['template.renderer'] = $container->extend('template.renderer', function (callable $renderer, $container) {
+        return function (string $name, array $context = []) use ($renderer, $container) {
+            /** @var \Symfony\Component\Finder\SplFileInfo $documentInput */
+            $documentInput = $context['berti']['document']->input;
+
+            $path = dirname($documentInput->getRealPath());
+
+            $repo = $container['github.repository_detector']($path);
+
+            if (!$repo) {
+                return $renderer($name, $context);
+            }
+
+            $components = array_filter($container['react.components'], function ($component) use ($repo) {
+                return $component['full_name'] === $repo;
+            });
+
+            $component = reset($components);
+
+            if (!$component) {
+                return $renderer($name, $context);
+            }
+
+            if ('master' === basename(dirname($documentInput->getRealPath()))) {
+                $version = 'master';
+            } else {
+                $process = new Symfony\Component\Process\Process('git describe --tags', $path);
+                $process->run();
+
+                // Might return HEAD if not in a tag checkout
+                $version = trim($process->getOutput());
+            }
+
+            $context['component'] = $component;
+            $context['component_version'] = $version;
+            $name = 'component.html.twig';
+
+            if ('LICENSE' === $documentInput->getFilename()) {
+                $name = 'component-license.html.twig';
+            }
+
+            return $renderer($name, $context);
+        };
+    });
+
+    $container['react.repository_contributors'] = function ($container) {
+        /** @var Github\Client $client */
+        $client = $container['github.client'];
+
+        return function ($repo) use ($client) {
+            [$username, $repository] = explode('/', $repo);
+
+            return $client->repo()->contributors($username, $repository);
+        };
+    };
+
+    $container['react.repository_participation'] = function ($container) {
+        /** @var Github\Client $client */
+        $client = $container['github.client'];
+
+        return function ($repo) use ($client) {
+            [$username, $repository] = explode('/', $repo);
+
+            return $client->repo()->participation($username, $repository);
+        };
+    };
+
     $container['twig'] = $container->extend('twig', function (\Twig_Environment $twig, $container) {
         $twig->addFunction(
             new \Twig_Function(
@@ -102,6 +192,72 @@ return function (Pimple\Container $container) {
             )
         );
 
+        $twig->addFunction(
+            new \Twig_Function(
+                'contributors',
+                function ($repo) use ($container) {
+                    return $container['react.repository_contributors']($repo);
+                }
+            )
+        );
+
+        $twig->addFunction(
+            new \Twig_Function(
+                'participation_svg',
+                function ($repo) use ($container) {
+                    $participation =  $container['react.repository_participation']($repo);
+
+                    $width = 320;
+                    $height = 40;
+
+                    $prefix = str_replace('/', '-', $repo);
+
+                    $x = 0;
+                    $offset = floor($width / count($participation['all']));
+
+                    $points = array_map(function ($value) use (&$x, $offset) {
+                        $currX = $x;
+                        $x += $offset;
+
+                        return $currX . ',' . ($value + 1);
+                    }, $participation['all']);
+
+                    $pointString = implode(' ', $points);
+                    $rectHeight = $height + 2;
+
+                    return <<<EOF
+<svg width="$width" height="$rectHeight">
+    <defs>
+        <linearGradient id="$prefix-participation-gradient" x1="0" x2="0" y1="1" y2="0">
+            <stop offset="10%" stop-color="#40a977"></stop>
+            <stop offset="90%" stop-color="#ba3525"></stop>
+        </linearGradient>
+        <mask id="$prefix-participation-sparkline" x="0" y="0" width="$width" height="$height" >
+            <polyline 
+                transform="translate(0, $height) scale(1,-1)"
+                points="$pointString" 
+                fill="transparent" 
+                stroke="#40a977" 
+                stroke-width="2"
+            >
+        </mask>
+    </defs>
+
+    <g transform="translate(0, -1.5)">
+        <rect 
+            x="0" 
+            y="-2" 
+            width="$width" 
+            height="$rectHeight"
+            style="stroke:none;fill:url(#$prefix-participation-gradient);mask:url(#$prefix-participation-sparkline)"
+        ></rect>
+    </g>
+</svg>
+EOF;
+                }
+            )
+        );
+
         $twig->addFilter(
             new \Twig_Filter(
                 'display_url',
@@ -119,8 +275,17 @@ return function (Pimple\Container $container) {
 
         $twig->addFilter(
             new \Twig_Filter(
+                'strip_title',
+                function ($string) {
+                    return preg_replace('/^<h1[^>]*?>.*?<\/h1>/si', '', trim($string));
+                }
+            )
+        );
+
+        $twig->addFilter(
+            new \Twig_Filter(
                 'emoji',
-                function ($string) use ($container) {
+                function ($string) {
                     return \LitEmoji\LitEmoji::encodeUnicode($string);
                 }
             )
@@ -152,6 +317,7 @@ return function (Pimple\Container $container) {
         return $finder
             ->files()
             ->ignoreDotFiles(false)
+            ->notName('.DS_Store')
             ->in($path . '/src/static-files');
     });
 

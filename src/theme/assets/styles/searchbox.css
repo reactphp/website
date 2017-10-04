@@ -3,11 +3,13 @@
 
     &,
     &:focus {
-        background: var(--color-background-lighter) url(../img/search.png) no-repeat 10px center;
+        background: var(--color-background-light) url(../img/search.svg) no-repeat 10px center;
         background-size: 16px 16px;
+        box-shadow: var(--box-shadow-light);
         border-radius: 4px;
         outline: none;
-        transition: all .35s cubic-bezier(0.23, 1, 0.32, 1);
+        transition: width .35s cubic-bezier(0.23, 1, 0.32, 1);
+        font-size: .9rem;
     }
 
     &::-webkit-input-placeholder {
@@ -25,13 +27,15 @@
     }
 
     &:focus {
-        border: 1px solid var(--color-background);
+        background-color: var(--color-background-lighter) !important;
+        box-shadow: var(--box-shadow-lighter);
     }
 }
 
 .searchbox--collapsed {
     &:not(:focus) {
         cursor: pointer;
+        box-shadow: none;
 
         &::-webkit-search-decoration {
             display: none;
@@ -54,6 +58,6 @@
 .searchbox--large {
     &,
     &:focus {
-        padding: 8px 4px 8px 40px;
+        padding: 8px 12px 8px 40px;
     }
 }

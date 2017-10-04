@@ -29,39 +29,47 @@ function run($command, $cwd = null)
     });
 }
 
-function component(Symfony\Component\Console\Output\ConsoleOutput $output, $componentsDir, $name, $gitUrl, $latestTag)
+function checkout($dir, $gitUrl, $tag)
+{
+    if (!is_dir($dir)) {
+        run('git clone ' . $gitUrl . ' "' . $dir . '"');
+    }
+
+    run('git fetch', $dir);
+    run('git checkout -f ' . $tag, $dir);
+}
+
+function component(Symfony\Component\Console\Output\ConsoleOutput $output, $componentsDir, $name, $gitUrl, array $versions)
 {
     $componentDir = $componentsDir . DIRECTORY_SEPARATOR . $name;
 
-    if (!is_dir($componentDir)) {
-        run('git clone ' . $gitUrl . ' "' . $componentDir . '"');
-    }
+    $latestVersion = reset($versions);
 
-    run('git fetch', $componentDir);
+    $output->writeln('Latest version: ' . $latestVersion);
 
-    $output->writeln('Latest tag: ' . $latestTag);
-
-    run('git checkout -f ' . $latestTag, $componentDir);
+    checkout($componentDir, $gitUrl, $latestVersion);
 }
 
 $input  = new Symfony\Component\Console\Input\ArgvInput();
 $output = new Symfony\Component\Console\Output\ConsoleOutput();
 
-foreach ($container['react.components'] as $component) {
-    $output->writeln(sprintf(
-        '<comment>Updating component %s...</comment>',
-        $component['repository']
-    ));
+if (!$input->hasParameterOption('--no-component-update')) {
+    foreach ($container['react.components'] as $component) {
+        $output->writeln(sprintf(
+            '<comment>Updating component %s...</comment>',
+            $component['repository']
+        ));
 
-    component(
-        $output,
-        $componentsDir,
-        $component['name'],
-        $component['git_url'],
-        $component['tags'][0]['name'] ?? 'master'
-    );
+        component(
+            $output,
+            $componentsDir,
+            $component['name'],
+            $component['git_url'],
+            $component['versions']
+        );
 
-    $output->writeln('<info>Done.</info>');
+        $output->writeln('<info>Done.</info>');
+    }
 }
 
 if ($input->hasParameterOption('--dev-server')) {

@@ -3,10 +3,14 @@ tt, code, pre {
 }
 
 tt, code {
-    font-size: 12px
+    font-size: .75rem;
 }
 
 pre {
-    font-size: 85%;
+    font-size: .85rem;
     line-height: 1.45;
+
+    @media (max-width: 768px) {
+        font-size: .75rem;
+    }
 }

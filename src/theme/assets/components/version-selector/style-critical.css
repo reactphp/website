@@ -1,0 +1,7 @@
+@import "../../styles/variables.css";
+
+.version-selector__panel {
+    position: fixed;
+    top: -20000em;
+    visibility: hidden;
+}

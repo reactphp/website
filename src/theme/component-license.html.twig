@@ -1,0 +1,8 @@
+{% extends 'component.html.twig' %}
+
+{% block title %}{{ component.title ~ ': License' }}{% endblock %}
+{% block component_content %}
+    {{ '# License'|markdown }}
+
+    {{ parent() }}
+{% endblock %}

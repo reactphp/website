@@ -4,3 +4,6 @@ require('./lib/rel-preload-as-style-polyfill');
 
 require('./fonts/fonts.css');
 require('./styles/styles-critical.css');
+require('./components/off-canvas-menu/index-critical');
+require('./components/component-info/index-critical');
+require('./components/version-selector/index-critical');
