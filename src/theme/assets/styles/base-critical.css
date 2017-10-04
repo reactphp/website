@@ -1,5 +1,13 @@
 html {
     box-sizing: border-box;
+
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 16px;
+    line-height: 1.6;
+
+    @media (max-width: 768px) {
+        font-size: 18px;
+    }
 }
 
 *, *:before, *:after {
@@ -8,11 +16,6 @@ html {
 
 body {
     margin: 0;
-
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-
-    font-size: 16px;
-    line-height: 1.5;
     color: var(--color-base);
     background-color: #fff;
 }
@@ -21,7 +24,7 @@ p, ul, ol, hr, h1, h2, h3, h4, h5, h6, form, fieldset, blockquote {
     margin: 0 0 16px 0;
 }
 
-ul, ul {
+ul ul {
     margin-bottom: 0;
 }
 
@@ -51,7 +54,7 @@ h6 {
 }
 
 h1 {
-    font-size: 2.4em;
+    font-size: 2.4rem;
     margin-bottom: 32px;
     color: var(--color-key);
     letter-spacing: -1px;
@@ -62,8 +65,9 @@ h1:not(:first-child) {
 }
 
 h2 {
-    font-size: 1.8em;
+    font-size: 1.8rem;
     margin-bottom: 32px;
+    color: var(--color-key);
 }
 
 h2:not(:first-child) {
@@ -71,9 +75,8 @@ h2:not(:first-child) {
 }
 
 h3 {
-    font-size: 1.4em;
+    font-size: 1.4rem;
     margin-bottom: 24px;
-    color: var(--color-key);
 }
 
 h3:not(:first-child) {
@@ -81,7 +84,8 @@ h3:not(:first-child) {
 }
 
 h4 {
-    font-size: 1.2em;
+    font-size: 1.2rem;
+    color: var(--color-key);
 }
 
 h4:not(:first-child) {
@@ -90,11 +94,11 @@ h4:not(:first-child) {
 
 @media (max-width: 768px) {
     h1 {
-        font-size: 1.8em;
+        font-size: 1.8rem;
     }
 
     h2 {
-        font-size: 1.6em;
+        font-size: 1.6rem;
         margin-bottom: 32px;
     }
 }
@@ -110,14 +114,45 @@ h4:not(:first-child) {
 }
 
 .wrapper {
+    max-width: 1600px;
+    margin: auto;
+}
+
+.wrapper--medium {
+    max-width: 1280px;
+}
+
+.wrapper--small {
     max-width: 960px;
     margin: auto;
 }
 
-.wrapper--wide {
-    max-width: 1280px;
-}
-
 .wrapper--narrow {
     max-width: 640px;
+}
+
+.main {
+    width: calc(98% - 400px);
+    margin-bottom: 32px;
+}
+
+.sidebar {
+    width: calc(400px - 2%);
+    margin-bottom: 32px;
+}
+
+@media (max-width: 1024px) {
+    .main,
+    .sidebar {
+        width: auto;
+        margin-top: 16px;
+    }
+}
+
+.visually-hidden {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
 }

@@ -8,8 +8,6 @@
 }
 
 .grid > * {
-    display: flex;
-    flex: 1 1 0;
     margin-left: 2%;
     max-width: 100%;
 }
@@ -29,10 +27,13 @@
 @media (max-width: 768px) {
     .grid {
         flex-direction: column;
+        width: 100%;
+        margin-left: 0;
     }
 
     .grid > * {
         width: 100%;
         flex: 0 0 auto;
+        margin-left: 0;
     }
 }

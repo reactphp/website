@@ -1,0 +1,97 @@
+{% extends 'default.html.twig' %}
+
+{% set _title = component.title %}
+{% if berti.title is not empty and berti.title != _title %}
+    {% set _title = _title ~ ': ' ~  berti.title %}
+{% endif %}
+{% block title %}{{ _title }}{% endblock %}
+{% block description %}{{ component.description }}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="wrapper">
+            <div class="grid grid--wrap grid--gutter">
+                <main class="main">
+                    {% block component_content %}{{ berti.content|emoji|raw }}{% endblock %}
+                </main>
+                <aside class="sidebar" role="complementary">
+                    <section class="component-info">
+                        <h2 class="component-info__title">
+                            <a href="{{ berti.relative_root }}{{ component.name }}/">{{ component.title }}</a>
+
+                            <div class="version-selector">
+                                <button class="version-selector__button version-selector__button--latest" aria-expanded="false" aria-controls="component-version-selector" data-version-selector-toggle>
+                                    {{ component_version }}
+
+                                    <i class="icon-chevron-down" aria-hidden="true"></i>
+                                    <i class="icon-chevron-up" aria-hidden="true"></i>
+                                </button>
+
+                                <div id="component-version-selector" class="version-selector__panel" aria-hidden="true">
+                                    <p>Read the documentation of development and older versions on GitHub:</p>
+
+                                    <ul class="version-selector__list">
+                                        <li>
+                                            <a href="{{ component.html_url }}#readme" class="version-selector__version version-selector__version--dev">
+                                                master
+                                            </a>
+                                        </li>
+                                        {% for version in component.versions %}
+                                            {% if not loop.first %}
+                                            <li>
+                                                <a href="{{ component.html_url }}/tree/{{ version }}#readme" class="version-selector__version">
+                                                    {{ version }}
+                                                </a>
+                                            </li>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </h2>
+
+                        <ul class="component-info__info">
+                            <li>
+                                <a href="{{ component.html_url }}">
+                                    <i class="icon-github" aria-hidden="true"></i> Repository
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ berti.relative_root }}{{ component.name }}/changelog.html">
+                                    <i class="icon-calendar" aria-hidden="true"></i> Changelog
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ berti.relative_root }}{{ component.name }}/license.html">
+                                    <i class="icon-law" aria-hidden="true"></i> {{ component.license.name }}
+                                </a>
+                            </li>
+                        </ul>
+
+                        <h3 class="component-info__subtitle">Installation</h3>
+
+                        <div class="highlight highlight-source-shell"><pre>composer require {{ component.repository|replace({'php/': '/'}) }}:{% if 'master' == component_version %}dev-master{% else %}{{ '^' ~ component_version|replace({'v': ''}) }}{% endif %}</pre></div>
+
+                        <h3 class="component-info__subtitle">Contributors</h3>
+
+                        <ul class="component-info__contributors">
+                        {% for contributor in contributors(component.repository) %}
+                            <li>
+                                <a href="{{ contributor.html_url }}">
+                                    <img src="{{ contributor.avatar_url }}&amp;s=40" srcset="{{ contributor.avatar_url }}&amp;s=80 2x" alt="{{ contributor.login }}" title="{{ contributor.login }} ({{ contributor.contributions }} contribution{{ contributor.contributions|length == 1 ? '' : 's' }})">
+                                </a>
+                            </li>
+                        {% endfor %}
+                        </ul>
+
+                        <h3 class="component-info__subtitle">Activity</h3>
+
+                        <div class="component-info__participation">
+                            {{ participation_svg(component.repository)|raw }}
+                        </div>
+                    </section>
+                </aside>
+            </div>
+        </div>
+    </div>
+{% endblock %}

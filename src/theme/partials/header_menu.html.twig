@@ -1,0 +1,38 @@
+<div class="header__menu">
+    <button class="hamburger" aria-expanded="false" aria-controls="off-canvas-menu" data-off-canvas-menu-toggle>
+        <div class="hamburger__box">
+            <div class="hamburger__inner">
+                <span class="visually-hidden">Menu</span>
+            </div>
+        </div>
+    </button>
+</div>
+<nav id="off-canvas-menu" class="off-canvas-menu" aria-hidden="true">
+    <div class="off-canvas-menu__content">
+        <button aria-label="Close menu" class="off-canvas-menu__close" aria-expanded="false" aria-controls="off-canvas-menu" data-off-canvas-menu-toggle>
+            <i class="icon-x" aria-hidden="true"></i>
+        </button>
+
+        <section class="off-canvas-menu__section">
+            <a class="off-canvas-menu__section-top" href="{{ berti.relative_root }}">Home</a>
+        </section>
+    {% for category, components in container['react.components_by_category'] %}
+        <section class="off-canvas-menu__section">
+            <h3 class="off-canvas-menu__section-header">{{ category }}</h3>
+            <ul class="off-canvas-menu__list">
+            {% for component in components %}
+                <li>
+                    <a class="off-canvas-menu__link" href="{{ berti.relative_root }}{{ component.name }}/">
+                        {{ component.title|emoji }}
+
+                        <span class="off-canvas-menu__version">
+                            {{ component.versions[0] }}
+                        </span>
+                    </a>
+                </li>
+            {% endfor %}
+            </ul>
+        </section>
+    {% endfor %}
+    </div>
+</nav>

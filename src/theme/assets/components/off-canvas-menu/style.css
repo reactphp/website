@@ -1,0 +1,126 @@
+@import "../../styles/variables.css";
+
+.off-canvas-menu {
+    width: 300px;
+    height: 100%;
+    z-index: 1000;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    transition: all .35s cubic-bezier(0.23, 1, 0.32, 1);
+
+    outline: none;
+
+    &[aria-hidden="false"] {
+        transform: translate3D(0, 0, 0);
+    }
+}
+
+.off-canvas-menu__content {
+    position: absolute;
+    right: 0;
+    width: 285px;
+    height: 100%;
+    overflow-x: hidden;
+    background: var(--color-background-lightest);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.33);
+}
+
+.off-canvas-menu__close {
+    /* <button> reset */
+    -webkit-appearance: none;
+    background: none;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    text-shadow: none;
+    text-decoration: none;
+    text-transform: none;
+    overflow: visible;
+    cursor: pointer;
+    outline: none;
+
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 48px;
+    height: 48px;
+    z-index: 1001;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: var(--color-base);
+    font-size: 20px;
+
+    &:hover {
+        color: var(--color-green);
+    }
+}
+
+.off-canvas-menu__section {
+    padding: 8px 0;
+    border-top: 1px solid var(--color-background-light);
+}
+
+.off-canvas-menu__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.off-canvas-menu__link {
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
+    padding: 8px 16px;
+    font-size: .9rem;
+    line-height: 1;
+    color: var(--color-base);
+
+    &:hover {
+        color: var(--color-green);
+        text-decoration: none;
+    }
+}
+
+.off-canvas-menu__version {
+    display: inline-block;
+    line-height: 1;
+    padding: .25rem;
+    border-radius: 4px;
+    border: 1px solid var(--color-background);
+    color: var(--color-base-light);
+    font-size: .65rem;
+    text-decoration: none;
+
+    @nest .off-canvas-menu__link:hover & {
+        border-color: var(--color-green);
+        color: var(--color-green);
+    }
+}
+
+.off-canvas-menu__section-top,
+.off-canvas-menu__section-header {
+    text-transform: uppercase;
+    letter-spacing: .1rem;
+    color: var(--color-base-light);
+    padding: 8px 16px 16px 16px;
+    margin: 0;
+    font-weight: bold;
+    font-size: .9rem !important;
+}
+
+.off-canvas-menu__section-top {
+    display: block;
+    color: var(--color-base);
+    padding: 8px 16px;
+    font-size: .9rem;
+    line-height: 1rem;
+    text-decoration: none;
+
+    &:hover {
+        color: var(--color-green);
+        text-decoration: none;
+    }
+}
