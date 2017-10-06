@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a4d955e05b21606a193d7a64e2be0fc9",
+    "content-hash": "c1561c593c90ee6911314edb61a8dba1",
     "packages": [],
     "packages-dev": [
         {
@@ -219,16 +219,16 @@
         },
         {
             "name": "jsor/berti",
-            "version": "v3.0.0",
+            "version": "v3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jsor/berti.git",
-                "reference": "c2a1f61d9fdc7059b0d57ece7e39f1f5a65a92f5"
+                "reference": "061814113217a4e49bcf134770cf7aad08c60394"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jsor/berti/zipball/c2a1f61d9fdc7059b0d57ece7e39f1f5a65a92f5",
-                "reference": "c2a1f61d9fdc7059b0d57ece7e39f1f5a65a92f5",
+                "url": "https://api.github.com/repos/jsor/berti/zipball/061814113217a4e49bcf134770cf7aad08c60394",
+                "reference": "061814113217a4e49bcf134770cf7aad08c60394",
                 "shasum": ""
             },
             "require": {
@@ -286,7 +286,7 @@
                 "generator",
                 "markdown"
             ],
-            "time": "2017-07-03T13:29:26+00:00"
+            "time": "2017-10-06T07:34:22+00:00"
         },
         {
             "name": "knplabs/github-api",

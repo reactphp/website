@@ -9,12 +9,10 @@
         }
     ],
     "require-dev": {
-        "jsor/berti": "^3.0",
+        "jsor/berti": "^3.1",
         "symfony/filesystem": "^3.2",
         "symfony/process": "^3.2",
         "vlucas/phpdotenv": "^2.4",
         "elvanto/litemoji": "^1.0"
-    },
-    "require": {
     }
 }
