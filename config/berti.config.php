@@ -73,16 +73,16 @@ return function (Pimple\Container $container) {
     $container['react.articles'] = $data['articles'];
     $container['react.talks'] = $data['talks'];
 
-    $container['github.url_generator'] = $container->extend('github.url_generator', function (callable $urlGenerator, $container){
-        return function (string $repository, string $url, string $cwd = null) use ($urlGenerator, $container) {
-            $components = array_filter($container['react.components'], function ($component) use ($repository) {
-                return $component['full_name'] === $repository;
-            });
+    $container['github.url_generator'] = $container->extend('github.url_generator', function (callable $urlGenerator) {
+        return function (string $repository, string $url, string $cwd = null) use ($urlGenerator) {
+            $process = new Symfony\Component\Process\Process('git describe --tags', $cwd);
+            $process->run();
 
-            $component = reset($components);
+            // Might return HEAD if not in a tag checkout
+            $version = trim($process->getOutput());
 
-            if (isset($component['tags'][0]['name'])) {
-                return 'https://github.com/' . $repository . '/blob/' . $component['tags'][0]['name'] . '/' . ltrim($url, '/');
+            if ($version && 'HEAD' !== $version) {
+                return 'https://github.com/' . $repository . '/blob/' . $version . '/' . ltrim($url, '/');
             }
 
             return $urlGenerator($repository, $url, $cwd);
