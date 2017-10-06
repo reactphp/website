@@ -1,5 +1,11 @@
 <?php
 
+try {
+    (new Dotenv\Dotenv(getcwd()))->load();
+} catch (Dotenv\Exception\InvalidPathException $e) {
+    // Ignore missing .env
+}
+
 return function (Pimple\Container $container) {
     $data = include __DIR__ . '/../src/data.php';
 

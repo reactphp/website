@@ -3,12 +3,6 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-try {
-    (new Dotenv\Dotenv(getcwd()))->load();
-} catch (Dotenv\Exception\InvalidPathException $e) {
-    // Ignore missing .env
-}
-
 $buildDir      = __DIR__ . '/../tmp/build';
 $componentsDir = __DIR__ . '/../tmp/components';
 $deployDir     = __DIR__ . '/../tmp/deploy';
