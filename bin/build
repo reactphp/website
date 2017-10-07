@@ -47,6 +47,10 @@ function component(Symfony\Component\Console\Output\ConsoleOutput $output, $comp
 $input  = new Symfony\Component\Console\Input\ArgvInput();
 $output = new Symfony\Component\Console\Output\ConsoleOutput();
 
+if ($input->hasParameterOption('--use-asset-dev-server')) {
+    putenv('USE_ASSET_DEV_SERVER=true');
+}
+
 if (!$input->hasParameterOption('--no-component-update')) {
     foreach ($container['react.components'] as $component) {
         $output->writeln(sprintf(
@@ -72,15 +76,13 @@ if ($input->hasParameterOption('--dev-server')) {
         '127.0.0.1:8000'
     );
 
+    putenv('DEPLOY_URL=' . $address);
+
     call_user_func(
         $container['server'],
+        getcwd(),
+        $staticDir,
         $output,
-        [
-            'DEPLOY_URL' => 'http://' . $address,
-            'BERTI_CONFIG' => $configFile,
-            'BERTI_BUILD_DIR' => $staticDir,
-            'BERTI_USE_ASSET_DEV_SERVER' => $input->hasParameterOption('--use-asset-dev-server') ? 'true' : 'false'
-        ],
         $address
     );
 

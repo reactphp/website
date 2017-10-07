@@ -309,7 +309,7 @@ EOF;
 
         $twig->addGlobal(
             'use_asset_dev_server',
-            'true' === getenv('BERTI_USE_ASSET_DEV_SERVER')
+            'true' === getenv('USE_ASSET_DEV_SERVER')
         );
 
         $twig->addGlobal('base_url', rtrim(getenv('DEPLOY_URL'), '/'));
