@@ -146,6 +146,79 @@ return function (Pimple\Container $container) {
         };
     });
 
+    $container['github.markdown.filter'] = $container->extend('github.markdown.filter', function (callable $filter, $container) {
+        // Replaces internal links from https://github.com/reactphp/{component}
+        // to https://reactphp.org/{component}
+        return function (
+            string $repository,
+            string $html,
+            Berti\Document $document,
+            array $documentCollection,
+            array $assetCollection
+        ) use ($filter, $container) {
+            $html = $filter(
+                $repository,
+                $html,
+                $document,
+                $documentCollection,
+                $assetCollection
+            );
+
+            $map = [];
+
+            foreach ($documentCollection as $doc) {
+                $inputPath = $doc->input->getRelativePathname();
+                $outputPath = $doc->output->getRelativePathname();
+
+                if (basename($inputPath) === $container['input.directory_index']) {
+                    $inputPath = dirname($inputPath);
+                }
+
+                if (basename($outputPath) === $container['output.directory_index']) {
+                    $outputPath = rtrim(dirname($outputPath), '/') . '/';
+                }
+
+                $map[$inputPath] = Berti\uri_rewriter(
+                    $outputPath,
+                    '/',
+                    $document->output->getRelativePathname()
+                );
+            }
+
+            $repos = array_map(function ($component) {
+                return $component['name'];
+            }, $container['react.components']);
+
+            $callback = function ($matches) use ($map) {
+                $url = $matches[2] . ($matches[3] ?? '');
+
+                $hash = '';
+
+                if (false !== strpos($url, '#')) {
+                    [$url, $hash] = explode('#', $url);
+                }
+
+                if (!isset($map[$url])) {
+                    return $matches[0];
+                }
+
+                if ('' !== $hash) {
+                    $hash = '#' . $hash;
+                }
+
+                return 'href="' . $map[$url] . $hash . '"';
+            };
+
+            $html = preg_replace_callback(
+                '/href=(["\']?)https:\/\/github.com\/reactphp\/+([' . preg_quote(implode('|', $repos), '/') . ']+)([^"\']+)?\\1/i',
+                $callback,
+                $html
+            );
+
+            return $html;
+        };
+    });
+
     $container['react.repository_contributors'] = function ($container) {
         /** @var Github\Client $client */
         $client = $container['github.client'];
