@@ -31,7 +31,7 @@
             </div>
         </div>
 
-        <div class="container container--center">
+        <div class="container">
             <div class="wrapper wrapper--small">
                 <div class="welcome__example">
             {% markdown %}
@@ -54,7 +54,7 @@ echo "Server running at http://127.0.0.1:8080\n";
 $loop->run();
 ```
             {% endmarkdown %}
-                    <p>This simple web server written in ReactPHP responds with "Hello World" for every request.</p>
+                    <p class="center">This simple web server written in ReactPHP responds with "Hello World" for every request.</p>
                 </div>
             </div>
         </div>
@@ -62,7 +62,7 @@ $loop->run();
 
     <hr>
 
-    <div class="container container--center">
+    <div class="container center">
         <div class="wrapper wrapper--narrow">
             <form>
                 <input type="search" class="searchbox searchbox--large" data-docsearch placeholder="Search documentation...">
@@ -73,9 +73,14 @@ $loop->run();
     <hr>
 
 {% for category, components in container['react.components_by_category'] %}
-    <div class="container container--center">
+    <div class="container center">
         <div class="wrapper wrapper--small">
-            <h2>{{ category }}</h2>
+            <h2>
+                <a id="{{ category|lower|replace({' ': '-'}) }}" class="anchor" href="#{{ category|lower|replace({' ': '-'}) }}" aria-hidden="true">
+                    <span aria-hidden="true" class="octicon octicon-link"></span>
+                </a>
+                {{ category }}
+            </h2>
 
             <div class="grid grid--{{ components|length }}cols">
             {% for component in components %}
@@ -98,9 +103,14 @@ $loop->run();
 
     <hr>
 
-    <div class="container container--center">
+    <div class="container center">
         <div class="wrapper wrapper--small">
-            <h2>Built with ReactPHP</h2>
+            <h2>
+                <a id="built-with-reactphp" class="anchor" href="#built-with-reactphp" aria-hidden="true">
+                    <span aria-hidden="true" class="octicon octicon-link"></span>
+                </a>
+                Built with ReactPHP
+            </h2>
 
             <div class="grid grid--3cols">
             {% for component in container['react.built_with'] %}
@@ -128,9 +138,14 @@ $loop->run();
 
     <hr>
 
-    <div class="container container--center">
+    <div class="container center">
         <div class="wrapper wrapper--small">
-            <h2>Articles</h2>
+            <h2>
+                <a id="articles" class="anchor" href="#articles" aria-hidden="true">
+                    <span aria-hidden="true" class="octicon octicon-link"></span>
+                </a>
+                Articles
+            </h2>
 
             <div class="grid grid--2cols">
             {% for article in container['react.articles'] %}
@@ -151,9 +166,14 @@ $loop->run();
 
     <hr>
 
-    <div class="container container--center">
+    <div class="container center">
         <div class="wrapper wrapper--medium">
-            <h2>Talks</h2>
+            <h2>
+                <a id="talks" class="anchor" href="#talks" aria-hidden="true">
+                    <span aria-hidden="true" class="octicon octicon-link"></span>
+                </a>
+                Talks
+            </h2>
 
             <div class="grid grid--3cols">
             {% for talk in container['react.talks'] %}

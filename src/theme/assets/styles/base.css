@@ -7,10 +7,6 @@ a:hover {
     text-decoration: underline;
 }
 
-.container--center {
-    text-align: center;
-}
-
 .container--alt {
     background: var(--color-background-light);
 }
