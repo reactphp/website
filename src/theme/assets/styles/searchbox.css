@@ -9,7 +9,6 @@
         border-radius: 4px;
         outline: none;
         transition: width .35s cubic-bezier(0.23, 1, 0.32, 1);
-        font-size: .9rem;
     }
 
     &::-webkit-input-placeholder {

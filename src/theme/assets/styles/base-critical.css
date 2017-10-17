@@ -54,7 +54,7 @@ h6 {
 }
 
 h1 {
-    font-size: 2.4rem;
+    font-size: 2.5rem;
     margin-bottom: 32px;
     color: var(--color-key);
     letter-spacing: -1px;
@@ -65,7 +65,7 @@ h1:not(:first-child) {
 }
 
 h2 {
-    font-size: 1.8rem;
+    font-size: 2rem;
     margin-bottom: 32px;
     color: var(--color-key);
 }
@@ -75,7 +75,7 @@ h2:not(:first-child) {
 }
 
 h3 {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     margin-bottom: 24px;
 }
 
@@ -84,7 +84,7 @@ h3:not(:first-child) {
 }
 
 h4 {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     color: var(--color-key);
 }
 
@@ -94,11 +94,11 @@ h4:not(:first-child) {
 
 @media (max-width: 768px) {
     h1 {
-        font-size: 1.8rem;
+        font-size: 2rem;
     }
 
     h2 {
-        font-size: 1.6rem;
+        font-size: 1.75rem;
         margin-bottom: 32px;
     }
 }

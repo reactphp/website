@@ -18,7 +18,7 @@ blockquote {
     background-color: var(--color-background-lighter);
     box-shadow: var(--box-shadow-lighter);
     position: relative;
-    font-size: .9rem;
+    font-size: .875rem;
 
     &:before {
         content: 'ℹ︎';
