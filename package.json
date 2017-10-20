@@ -38,6 +38,7 @@
     ]
   },
   "dependencies": {
+    "@dotsunited/load-css-polyfill": "^1.0.0",
     "docsearch.js": "^2.3.3",
     "es6-promise": "^4.1.1"
   },
