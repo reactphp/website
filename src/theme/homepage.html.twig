@@ -82,7 +82,7 @@ $loop->run();
                 {{ category }}
             </h2>
 
-            <div class="grid grid--{{ components|length }}cols">
+            <div class="grid grid--{{ (components|length % 3) ? 2 : 3 }}cols">
             {% for component in components %}
                 <a href="{{ berti.relative_root }}{{ component.name }}/" class="box">
                     <div class="box__content">
@@ -112,7 +112,7 @@ $loop->run();
                 Built with ReactPHP
             </h2>
 
-            <div class="grid grid--3cols">
+            <div class="grid grid--{{ (container['react.built_with']|length % 3) ? 2 : 3 }}cols">
             {% for component in container['react.built_with'] %}
                 <a href="{{ component.html_url }}" class="box">
                     <div class="box__content">
@@ -147,7 +147,7 @@ $loop->run();
                 Articles
             </h2>
 
-            <div class="grid grid--2cols">
+            <div class="grid grid--{{ (container['react.articles']|length % 3) ? 2 : 3 }}cols">
             {% for article in container['react.articles'] %}
                 <a href="{{ article.link }}" class="box">
                     <div class="box__content">
@@ -175,7 +175,7 @@ $loop->run();
                 Talks
             </h2>
 
-            <div class="grid grid--3cols">
+            <div class="grid grid--{{ (container['react.talks']|length % 3) ? 2 : 3 }}cols">
             {% for talk in container['react.talks'] %}
                 <div class="box">
                     <div class="box__content">
