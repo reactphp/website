@@ -48,13 +48,18 @@ return [
             'category' => 'Utility Components'
         ],
         [
+            'title' => 'ChildProcess',
+            'repository' => 'reactphp/child-process',
+            'category' => 'Utility Components'
+        ],
+        [
             'title' => 'PromiseTimer',
             'repository' => 'reactphp/promise-timer',
             'category' => 'Utility Components'
         ],
         [
-            'title' => 'ChildProcess',
-            'repository' => 'reactphp/child-process',
+            'title' => 'PromiseStream',
+            'repository' => 'reactphp/promise-stream',
             'category' => 'Utility Components'
         ],
     ],
