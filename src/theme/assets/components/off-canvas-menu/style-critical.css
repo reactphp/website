@@ -4,5 +4,5 @@
     position: fixed;
     top: 0;
     right: 0;
-    transform: translate3d(calc(100% + 5px), 0, 0);
+    transform: translate3d(105%, 0, 0);
 }
