@@ -93,7 +93,7 @@ return [
         [
             'title' => 'Sergey Zhuk',
             'description' => 'A series of articles covering ReactPHP: from the basics to the real application examples.',
-            'link' => 'http://seregazhuk.github.io/reactphp-series',
+            'link' => 'http://sergeyzhuk.me/reactphp-series',
         ],
         [
             'title' => 'Cees-Jan Kiewiet',
