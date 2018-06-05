@@ -2,9 +2,9 @@ const path = require('path');
 
 module.exports = {
     entry: [
-        path.resolve(process.cwd(), 'src/theme/assets/promise-polyfill.js'),
-        path.resolve(process.cwd(), 'src/theme/assets/main-critical.js'),
-        path.resolve(process.cwd(), 'src/theme/assets/main.js')
+        path.resolve(process.cwd(), 'theme/assets/promise-polyfill.js'),
+        path.resolve(process.cwd(), 'theme/assets/main-critical.js'),
+        path.resolve(process.cwd(), 'theme/assets/main.js')
     ],
     output: {
         publicPath: 'http://localhost:8080/_assets/',

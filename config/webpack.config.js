@@ -6,17 +6,17 @@ const ManifestPlugin = require('webpack-manifest-plugin');
 module.exports = {
     entry: {
         'main-critical': [
-            path.resolve(process.cwd(), 'src/theme/assets/webpack-public-path.js'),
-            path.resolve(process.cwd(), 'src/theme/assets/main-critical.js')
+            path.resolve(process.cwd(), 'theme/assets/webpack-public-path.js'),
+            path.resolve(process.cwd(), 'theme/assets/main-critical.js')
         ],
         main: [
-            path.resolve(process.cwd(), 'src/theme/assets/webpack-public-path.js'),
-            path.resolve(process.cwd(), 'src/theme/assets/promise-polyfill.js'),
-            path.resolve(process.cwd(), 'src/theme/assets/main.js')
+            path.resolve(process.cwd(), 'theme/assets/webpack-public-path.js'),
+            path.resolve(process.cwd(), 'theme/assets/promise-polyfill.js'),
+            path.resolve(process.cwd(), 'theme/assets/main.js')
         ]
     },
     output: {
-        path: path.resolve(process.cwd(), 'src/static-files/assets'),
+        path: path.resolve(process.cwd(), 'static-files/assets'),
         filename: '[name].[chunkhash].js',
         chunkFilename: '[name].[chunkhash].js'
     },
