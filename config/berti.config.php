@@ -7,9 +7,7 @@ try {
 }
 
 return function (Pimple\Container $container) {
-    $data = include __DIR__ . '/../src/data.php';
-
-    $container['react.components'] = function ($container) use ($data) {
+    $container['react.components'] = function ($container) {
         /** @var Github\Client $client */
         $client = $container['github.client'];
 
@@ -44,7 +42,7 @@ return function (Pimple\Container $container) {
                 Github\HttpClient\Message\ResponseMediator::getContent($response),
                 $component
             );
-        }, $data['components']);
+        }, include __DIR__ . '/../data/components.php');
     };
 
     $container['react.components_by_category'] = function ($container) {
@@ -62,22 +60,22 @@ return function (Pimple\Container $container) {
         return $byCategory;
     };
 
-    $container['react.built_with'] = function ($container) use ($data) {
+    $container['react.built_with'] = function ($container) {
         /** @var Github\Client $client */
         $client = $container['github.client'];
 
         return array_map(function($component) use ($client) {
-            list($username, $repository) = explode('/', $component['repository']);
+            [$username, $repository] = explode('/', $component['repository']);
 
             return array_merge(
                 $client->repo()->show($username, $repository),
                 $component
             );
-        }, $data['built_with']);
+        }, include __DIR__ . '/../data/built_with.php');
     };
 
-    $container['react.articles'] = $data['articles'];
-    $container['react.talks'] = $data['talks'];
+    $container['react.articles'] = include __DIR__ . '/../data/articles.php';
+    $container['react.talks'] = include __DIR__ . '/../data/talks.php';
 
     $container['github.url_generator'] = $container->extend('github.url_generator', function (callable $urlGenerator) {
         return function (string $repository, string $url, string $cwd = null) use ($urlGenerator) {
@@ -95,7 +93,7 @@ return function (Pimple\Container $container) {
         };
     });
 
-    $container['template.theme'] = __DIR__ . '/../src/theme';
+    $container['template.theme'] = __DIR__ . '/../theme';
 
     $container['template.map'] = [
         'index.html' => 'homepage.html.twig'
@@ -375,7 +373,7 @@ EOF;
         $twig->addGlobal(
             'asset_manifest',
             json_decode(
-                file_get_contents(__DIR__.'/../src/static-files/assets/manifest.json'),
+                file_get_contents(__DIR__.'/../static-files/assets/manifest.json'),
                 true
             )
         );
@@ -397,7 +395,7 @@ EOF;
             ->files()
             ->ignoreDotFiles(false)
             ->notName('.DS_Store')
-            ->in($path . '/src/static-files');
+            ->in($path . '/static-files');
     });
 
     $container['document.finder'] = $container->protect(function ($path) {
@@ -408,6 +406,6 @@ EOF;
             ->name('LICENSE')
             ->files()
             ->in($path . '/tmp/components')
-            ->in($path . '/src/pages');
+            ->in($path . '/pages');
     });
 };
