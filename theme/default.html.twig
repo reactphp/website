@@ -26,11 +26,11 @@
         <link rel="preload" href="{{ berti.relative_root }}assets/{{ asset_manifest['sourcesanspro-regular.woff'] }}" as="font" type="font/woff" crossorigin>
         <link rel="preload" href="{{ berti.relative_root }}assets/{{ asset_manifest['sourcesanspro-bold.woff'] }}" as="font" type="font/woff" crossorigin>
 
-        <style>{{ embed(berti.build_dir ~ '/assets/' ~ asset_manifest['main-critical.css'], berti.relative_root ~ 'assets/')|raw }}</style>
+        <style>{{ embed_asset(berti.build_dir ~ '/assets/' ~ asset_manifest['main-critical.css'], berti.relative_root ~ 'assets/')|raw }}</style>
         <link rel="preload" href="{{ berti.relative_root }}assets/{{ asset_manifest['main.css'] }}" as="style" onload="this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="{{ berti.relative_root }}assets/{{ asset_manifest['main.css'] }}"></noscript>
 
-        <script>{{ embed(berti.build_dir ~ '/assets/' ~ asset_manifest['main-critical.js'])|raw }}</script>
+        <script>{{ embed_asset(berti.build_dir ~ '/assets/' ~ asset_manifest['main-critical.js'])|raw }}</script>
     {% else %}
         <script src="http://localhost:8080/_assets/main.js"></script>
     {% endif %}

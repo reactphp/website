@@ -8,6 +8,15 @@
             "email": "jsorgalla@gmail.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "React\\Website\\": "src/"
+        },
+        "files": [
+            "src/berti.php",
+            "src/data.php"
+        ]
+    },
     "require-dev": {
         "jsor/berti": "^4.0",
         "symfony/filesystem": "^3.2",

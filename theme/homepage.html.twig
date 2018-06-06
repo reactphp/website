@@ -72,7 +72,7 @@ $loop->run();
 
     <hr>
 
-{% for category, components in container['react.components_by_category'] %}
+{% for category, components in components_by_category %}
     <div class="container center">
         <div class="wrapper wrapper--small">
             <h2>
@@ -112,8 +112,8 @@ $loop->run();
                 Built with ReactPHP
             </h2>
 
-            <div class="grid grid--{{ (container['react.built_with']|length % 3) ? 2 : 3 }}cols">
-            {% for component in container['react.built_with'] %}
+            <div class="grid grid--{{ (built_with|length % 3) ? 2 : 3 }}cols">
+            {% for component in built_with %}
                 <a href="{{ component.html_url }}" class="box">
                     <div class="box__content">
                         <h3>{{ component.title|emoji }}</h3>
@@ -147,8 +147,8 @@ $loop->run();
                 Articles
             </h2>
 
-            <div class="grid grid--{{ (container['react.articles']|length % 3) ? 2 : 3 }}cols">
-            {% for article in container['react.articles'] %}
+            <div class="grid grid--{{ (articles|length % 3) ? 2 : 3 }}cols">
+            {% for article in articles %}
                 <a href="{{ article.link }}" class="box">
                     <div class="box__content">
                         <h3>{{ article.title|emoji }}</h3>
@@ -175,8 +175,8 @@ $loop->run();
                 Talks
             </h2>
 
-            <div class="grid grid--{{ (container['react.talks']|length % 3) ? 2 : 3 }}cols">
-            {% for talk in container['react.talks'] %}
+            <div class="grid grid--{{ (talks|length % 3) ? 2 : 3 }}cols">
+            {% for talk in talks %}
                 <div class="box">
                     <div class="box__content">
                         <div class="iframe">
