@@ -33,11 +33,9 @@ function checkout($dir, $gitUrl, $tag)
     run('git checkout -f ' . $tag, $dir);
 }
 
-function component(Symfony\Component\Console\Output\ConsoleOutput $output, $componentsDir, $name, $gitUrl, array $versions)
+function component(Symfony\Component\Console\Output\ConsoleOutput $output, $componentsDir, $name, $gitUrl, string $latestVersion)
 {
     $componentDir = $componentsDir . DIRECTORY_SEPARATOR . $name;
-
-    $latestVersion = reset($versions);
 
     $output->writeln('Latest version: ' . $latestVersion);
 
@@ -63,7 +61,7 @@ if (!$input->hasParameterOption('--no-component-update')) {
             $componentsDir,
             $component['name'],
             $component['git_url'],
-            $component['versions']
+            $component['releases'][0]['tag']
         );
 
         $output->writeln('<info>Done.</info>');
