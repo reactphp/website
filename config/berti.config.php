@@ -33,6 +33,18 @@ return function (Pimple\Container $container) {
         'index.html' => 'homepage.html.twig'
     ];
 
+    $container['github.client'] = $container->extend('github.client', function (Github\Client $client) {
+        $client->addCache(
+            new Symfony\Component\Cache\Adapter\FilesystemAdapter(
+                'github.client',
+                0,
+                __DIR__ . '/../tmp/cache'
+            )
+        );
+
+        return $client;
+    });
+
     $container['github.url_generator'] = $container->extend('github.url_generator', function (callable $urlGenerator) {
         return function (string $repository, string $url, string $cwd = null) use ($urlGenerator) {
             return React\Website\Berti\github_url_generator(
