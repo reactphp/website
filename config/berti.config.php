@@ -7,6 +7,14 @@ try {
 }
 
 return function (Pimple\Container $container) {
+    $container['markdown.cache'] = function () {
+        return new Symfony\Component\Cache\Adapter\FilesystemAdapter(
+            'markdown',
+            0,
+            __DIR__ . '/../tmp/cache'
+        );
+    };
+
     $container['data.components'] = function (Pimple\Container $container) {
         return React\Website\Data\components($container['github.client']);
     };
@@ -75,6 +83,40 @@ return function (Pimple\Container $container) {
                 $documentCollection,
                 $assetCollection
             );
+        };
+    });
+
+    $container['markdown.renderer'] = $container->extend('markdown.renderer', function (callable $renderer, Pimple\Container $container) {
+        return function (
+            string $content,
+            Berti\Document $document,
+            array $documentCollection,
+            array $assetCollection
+        ) use ($renderer, $container) {
+            /** @var \Psr\Cache\CacheItemPoolInterface $cache */
+            $cache = $container['markdown.cache'];
+
+            $repository = $container['github.repository_detector'](dirname($document->input->getRealPath())) ?: null;
+
+            $cacheKey = 'markdown' . md5($repository . $content);
+
+            $cacheItem = $cache->getItem($cacheKey);
+
+            if ($cacheItem->isHit()) {
+                return $cacheItem->get();
+            }
+
+            $html = $renderer(
+                $content,
+                $document,
+                $documentCollection,
+                $assetCollection
+            );
+
+            $cacheItem->set($html);
+            $cache->save($cacheItem);
+
+            return $html;
         };
     });
 
