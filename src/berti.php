@@ -43,7 +43,7 @@ function github_url_generator(
 
 /**
  * This function extends the `Berti\twig_renderer()` to dynamically switch
- * templates if a component repository is detected.
+ * templates, eg. if a component repository is detected.
  *
  * It also passes additional component context data when rendering the template.
  */
@@ -58,9 +58,11 @@ function template_renderer(
     /** @var \Symfony\Component\Finder\SplFileInfo $documentInput */
     $documentInput = $context['berti']['document']->input;
 
-    $path = dirname($documentInput->getRealPath());
+    if ('changelog.md' === $documentInput->getRelativePathname()) {
+        return $bertiRenderer('changelog.html.twig', $context);
+    }
 
-    $repo = $repositoryDetector($path);
+    $repo = $repositoryDetector(dirname($documentInput->getRealPath()));
 
     if (!$repo) {
         return $bertiRenderer($name, $context);
@@ -79,14 +81,7 @@ function template_renderer(
         return $bertiRenderer($name, $context);
     }
 
-    $process = new Process('git describe --tags', $path);
-    $process->run();
-
-    // Might return HEAD if not in a tag checkout
-    $version = trim($process->getOutput());
-
     $context['component'] = $component;
-    $context['component_version'] = $version;
 
     $name = 'component.html.twig';
 

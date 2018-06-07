@@ -51,6 +51,11 @@ h5,
 h6 {
     font-family: "Source Sans Pro","Helvetica Neue",Arial,sans-serif;
     font-weight: 700;
+
+    & a,
+    & a:hover {
+        text-decoration: none;
+    }
 }
 
 h1 {
@@ -58,6 +63,11 @@ h1 {
     margin-bottom: 32px;
     color: var(--color-key);
     letter-spacing: -1px;
+
+    & a,
+    & a:hover {
+        color: var(--color-key);
+    }
 }
 
 h1:not(:first-child) {
@@ -68,6 +78,11 @@ h2 {
     font-size: 2rem;
     margin-bottom: 32px;
     color: var(--color-key);
+
+    & a,
+    & a:hover {
+        color: var(--color-key);
+    }
 }
 
 h2:not(:first-child) {
@@ -77,6 +92,12 @@ h2:not(:first-child) {
 h3 {
     font-size: 1.5rem;
     margin-bottom: 24px;
+    color: var(--color-base);
+
+    & a,
+    & a:hover {
+        color: var(--color-base);
+    }
 }
 
 h3:not(:first-child) {
@@ -86,6 +107,11 @@ h3:not(:first-child) {
 h4 {
     font-size: 1.25rem;
     color: var(--color-key);
+
+    & a,
+    & a:hover {
+        color: var(--color-key);
+    }
 }
 
 h4:not(:first-child) {

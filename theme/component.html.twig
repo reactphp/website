@@ -21,7 +21,7 @@
 
                             <div class="version-selector">
                                 <button class="version-selector__button version-selector__button--latest" aria-expanded="false" aria-controls="component-version-selector" data-version-selector-toggle>
-                                    {{ component_version }}
+                                    {{ component.releases[0].tag }}
 
                                     <i class="icon-chevron-down" aria-hidden="true"></i>
                                     <i class="icon-chevron-up" aria-hidden="true"></i>
@@ -36,11 +36,11 @@
                                                 master
                                             </a>
                                         </li>
-                                        {% for version in component.versions %}
+                                        {% for release in component.releases %}
                                             {% if not loop.first %}
                                             <li>
-                                                <a href="{{ component.html_url }}/tree/{{ version }}#readme" class="version-selector__version">
-                                                    {{ version }}
+                                                <a href="{{ component.html_url }}/tree/{{ release.tag }}#readme" class="version-selector__version">
+                                                    {{ release.tag }}
                                                 </a>
                                             </li>
                                             {% endif %}
@@ -70,7 +70,7 @@
 
                         <h3 class="component-info__subtitle">Installation</h3>
 
-                        <div class="highlight highlight-source-shell"><pre>composer require {{ component.repository|replace({'php/': '/'}) }}:{% if 'master' == component_version %}dev-master{% else %}{{ '^' ~ component_version|replace({'v': ''}) }}{% endif %}</pre></div>
+                        <div class="highlight highlight-source-shell"><pre>composer require {{ component.repository|replace({'php/': '/'}) }}:{{ '^' ~ component.releases[0].version }}</pre></div>
 
                         <h3 class="component-info__subtitle">Contributors</h3>
 
