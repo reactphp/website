@@ -16,11 +16,22 @@ return function (Pimple\Container $container) {
     };
 
     $container['data.components'] = function (Pimple\Container $container) {
-        return React\Website\Data\components($container['github.client']);
+        return React\Website\Data\components(
+            $container['github.client'],
+            $container['markdown.cache']
+        );
     };
 
     $container['data.components_by_category'] = function (Pimple\Container $container) {
         return React\Website\Data\components_by_category($container['data.components']);
+    };
+
+    $container['data.releases'] = function (Pimple\Container $container) {
+        return React\Website\Data\releases($container['data.components']);
+    };
+
+    $container['data.releases_by_year'] = function (Pimple\Container $container) {
+        return React\Website\Data\releases_by_year($container['data.releases']);
     };
 
     $container['data.built_with'] = function (Pimple\Container $container) {
@@ -143,6 +154,16 @@ return function (Pimple\Container $container) {
         $twig->addGlobal(
             'components_by_category',
             $container['data.components_by_category']
+        );
+
+        $twig->addGlobal(
+            'releases',
+            $container['data.releases']
+        );
+
+        $twig->addGlobal(
+            'releases_by_year',
+            $container['data.releases_by_year']
         );
 
         $twig->addGlobal(
