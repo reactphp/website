@@ -52,7 +52,9 @@ if ($input->hasParameterOption('--use-asset-dev-server')) {
 }
 
 if (!$input->hasParameterOption('--no-component-update')) {
-    foreach ($container['react.components'] as $component) {
+    $components = React\Website\Data\components($container['github.client']);
+
+    foreach ($components as $component) {
         $output->writeln(sprintf(
             '<comment>Updating component %s...</comment>',
             $component['repository']

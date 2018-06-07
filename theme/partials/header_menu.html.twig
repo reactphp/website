@@ -16,7 +16,7 @@
         <section class="off-canvas-menu__section">
             <a class="off-canvas-menu__section-top" href="{{ berti.relative_root }}">Home</a>
         </section>
-    {% for category, components in container['react.components_by_category'] %}
+    {% for category, components in components_by_category %}
         <section class="off-canvas-menu__section">
             <h3 class="off-canvas-menu__section-header">{{ category }}</h3>
             <ul class="off-canvas-menu__list">

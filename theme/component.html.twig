@@ -75,7 +75,7 @@
                         <h3 class="component-info__subtitle">Contributors</h3>
 
                         <ul class="component-info__contributors">
-                        {% for contributor in contributors(component.repository) %}
+                        {% for contributor in component.contributors %}
                             <li>
                                 <a href="{{ contributor.html_url }}">
                                     <img src="{{ contributor.avatar_url }}&amp;s=40" srcset="{{ contributor.avatar_url }}&amp;s=80 2x" alt="{{ contributor.login }}" title="{{ contributor.login }} ({{ contributor.contributions }} contribution{{ contributor.contributions|length == 1 ? '' : 's' }})">
@@ -87,7 +87,7 @@
                         <h3 class="component-info__subtitle">Activity</h3>
 
                         <div class="component-info__participation">
-                            {{ participation_svg(component.repository)|raw }}
+                            {{ participation_svg(component.repository, component.participation)|raw }}
                         </div>
                     </section>
                 </aside>
