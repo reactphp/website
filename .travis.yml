@@ -12,6 +12,7 @@ branches:
 cache:
   directories:
     - $HOME/.composer/cache/files
+    - tmp/cache
     - tmp/components
 
 before_script:
