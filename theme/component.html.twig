@@ -12,7 +12,11 @@
         <div class="wrapper">
             <div class="grid grid--wrap grid--gutter">
                 <main class="main">
-                    {% block component_content %}{{ berti.content|emoji|raw }}{% endblock %}
+                {% block component_content %}
+                    <h1>{{ component.title }}</h1>
+
+                    {{ berti.content|strip_title|emoji|raw }}
+                {% endblock %}
                 </main>
                 <aside class="sidebar" role="complementary">
                     <section class="component-info">

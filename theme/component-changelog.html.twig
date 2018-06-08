@@ -1,0 +1,8 @@
+{% extends 'component.html.twig' %}
+
+{% block title %}{{ component.title ~ ': Changelog' }}{% endblock %}
+{% block component_content %}
+    <h1>{{ component.title }} Changelog</h1>
+
+    {% include 'partials/changelog.html.twig' with {releases_by_year: component_releases_by_year, is_combined_changelog: false} %}
+{% endblock %}
