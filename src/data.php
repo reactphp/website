@@ -51,6 +51,11 @@ function components(Client $client, CacheItemPoolInterface $markdownCache): arra
                 'url' => $release['html_url'],
                 'component' => $component['title'],
                 'repository' => $component['repository'],
+                'author' => [
+                    'name' => $release['author']['login'],
+                    'uri' => $release['author']['html_url'],
+                    'avatar' => $release['author']['avatar_url'],
+                ]
             ];
         }
 

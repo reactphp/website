@@ -1,5 +1,9 @@
 {% extends 'default.html.twig' %}
 
+{% block head %}
+<link href="{{ base_url }}/changelog.atom" type="application/atom+xml" rel="alternate" title="Changelog">
+{% endblock %}
+
 {% block content %}
 
     <div class="container">

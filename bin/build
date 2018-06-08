@@ -88,6 +88,42 @@ if ($input->hasParameterOption('--dev-server')) {
 }
 
 (new Symfony\Component\Filesystem\Filesystem())->remove($buildDir);
+(new Symfony\Component\Filesystem\Filesystem())->mkdir($buildDir);
+
+(function (Symfony\Component\Console\Output\OutputInterface $output, string $buildDir, array $components): void {
+    $output->write('Generating changelog.atom...');
+
+    $feed = new Zend\Feed\Writer\Feed();
+
+    $feed->setId(getenv('DEPLOY_URL') . '/changelog.html');
+    $feed->setLink(getenv('DEPLOY_URL') . '/changelog.html');
+    $feed->setFeedLink(getenv('DEPLOY_URL') . '/changelog.atom', 'atom');
+
+    $feed->setLanguage('en');
+    $feed->setTitle('Changelog');
+    $feed->setDateModified(time());
+
+    $releases = array_slice(React\Website\Data\releases($components), 0, 10);
+
+    foreach ($releases as $release) {
+        $entry = $feed->createEntry();
+
+        $entry->setTitle($release['component'] . ' ' . $release['version']);
+        $entry->setLink($release['url']);
+        $entry->setDateModified((int) $release['date']->format('U'));
+        $entry->setDescription($release['html']);
+        $entry->addAuthor($release['author']);
+
+        $feed->addEntry($entry);
+    }
+
+    file_put_contents(
+        $buildDir . '/changelog.atom',
+        $feed->export('atom')
+    );
+
+    $output->writeln('<info>Done</info>');
+})($output, $buildDir, $container['data.components']);
 
 call_user_func(
     $container['generator'],
