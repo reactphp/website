@@ -1,0 +1,36 @@
+<ul class="toc">
+    {% for year, releases in releases_by_year %}
+        <li><a href="#{{ year }}" title="Jump to year {{ year }} ({{ releases|length }} release{% if releases|length != 1 %}s{% endif %})">{{ year }}</a></li>
+    {% endfor %}
+    </ul>
+
+{% for year, releases in releases_by_year %}
+    <h2>
+        <a id="{{ year }}" class="anchor" href="#{{ year }}" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>
+        {{ year }}
+    </h2>
+
+    {% for release in releases %}
+
+    {% set _id = release.version|replace({'.': ''}) ~ '-' ~ release.date|date('Y-m-d') %}
+    {% if is_combined_changelog == true %}
+        {% set _id = release.component|lower ~ '-' ~ _id %}
+    {% endif %}
+    <h3>
+        <a id="{{ _id }}" class="anchor" href="#{{ _id }}" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>
+
+        {% if is_combined_changelog == true %}{{ release.component }} {% endif %}{{ release.version }}
+
+        <small>
+            ({{ release.date|date('Y-m-d') }})
+            <a href="{{ release.url }}" title="Release on GitHub">
+                <i class="icon-github" aria-hidden="true"></i> <span class="visually-hidden">Release on GitHub</span>
+            </a>
+        </small>
+    </h3>
+
+    {{ release.html|raw }}
+
+    <hr>
+    {% endfor %}
+{% endfor %}

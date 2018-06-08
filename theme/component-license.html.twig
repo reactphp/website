@@ -2,7 +2,7 @@
 
 {% block title %}{{ component.title ~ ': License' }}{% endblock %}
 {% block component_content %}
-    {{ '# License'|markdown }}
+    <h1>{{ component.title }} License</h1>
 
-    {{ parent() }}
+    {{ berti.content|strip_title|emoji|raw }}
 {% endblock %}

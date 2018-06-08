@@ -3,6 +3,7 @@
 namespace React\Website\Berti;
 
 use Berti\Document;
+use function React\Website\Data\releases_by_year;
 use Symfony\Component\Process\Process;
 use function Berti\uri_rewriter;
 
@@ -83,10 +84,18 @@ function template_renderer(
 
     $context['component'] = $component;
 
-    $name = 'component.html.twig';
+    $context['component_releases_by_year'] = releases_by_year($component['releases']);
 
-    if ('LICENSE' === $documentInput->getFilename()) {
-        $name = 'component-license.html.twig';
+    switch ($documentInput->getFilename()) {
+        case 'LICENSE':
+            $name = 'component-license.html.twig';
+            break;
+        case 'CHANGELOG.md':
+            $name = 'component-changelog.html.twig';
+            break;
+        default:
+            $name = 'component.html.twig';
+            break;
     }
 
     return $bertiRenderer($name, $context);

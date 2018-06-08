@@ -14,46 +14,47 @@ function components(Client $client, CacheItemPoolInterface $markdownCache): arra
         $component['contributors'] = $client->repo()->contributors($username, $repository);
         $component['participation'] = $client->repo()->participation($username, $repository);
 
-        $releases = (new ResultPager($client))
+        $apiReleases = (new ResultPager($client))
             ->fetchAll(
                 $client->repo()->releases(),
                 'all',
                 [$username, $repository, ['per_page' => 100]]
             );
 
-        $releases = array_map(
-            function (array $release) use ($client, $markdownCache, $component) {
-                $cacheKey = 'gfm' . md5($component['repository'] . $release['body']);
+        $releases = [];
 
-                $cacheItem = $markdownCache->getItem($cacheKey);
+        foreach ($apiReleases as $release) {
+            $cacheKey = 'gfm' . md5($component['repository'] . $release['body']);
 
-                if ($cacheItem->isHit()) {
-                    $html = $cacheItem->get();
-                } else {
-                    $html = $client->markdown()->render(
-                        $release['body'],
-                        'gfm',
-                        $component['repository']
-                    );
+            $cacheItem = $markdownCache->getItem($cacheKey);
 
-                    $cacheItem->set($html);
-                    $markdownCache->save($cacheItem);
-                }
+            if ($cacheItem->isHit()) {
+                $html = $cacheItem->get();
+            } else {
+                $html = $client->markdown()->render(
+                    $release['body'],
+                    'gfm',
+                    $component['repository']
+                );
 
-                return [
-                    'version' => ltrim($release['tag_name'], 'v'),
-                    'tag' => $release['tag_name'],
-                    'date' => new \DateTimeImmutable($release['created_at']),
-                    'html' => $html,
-                    'url' => $release['html_url'],
-                ];
-            },
-            $releases
-        );
+                $cacheItem->set($html);
+                $markdownCache->save($cacheItem);
+            }
 
-        usort($releases, function ($a, $b) {
-            return \version_compare($b['version'], $a['version']);
-        });
+            $date = new \DateTimeImmutable($release['created_at']);
+
+            $releases[(int) $date->format('U')] =  [
+                'version' => ltrim($release['tag_name'], 'v'),
+                'tag' => $release['tag_name'],
+                'date' => $date,
+                'html' => $html,
+                'url' => $release['html_url'],
+                'component' => $component['title'],
+                'repository' => $component['repository'],
+            ];
+        }
+
+        krsort($releases, SORT_NATURAL);
 
         $component['releases'] = array_values($releases);
 
@@ -87,14 +88,11 @@ function releases(array $components): array
         foreach ($component['releases'] as $release) {
             $time = (int) $release['date']->format('U');
 
-            $releases[(PHP_INT_MAX - $time) . '-' . $component['repository']] = [
-                'component' => $component['title'],
-                'repository' => $component['repository'],
-            ] + $release;
+            $releases[$time . '-' . $component['repository']] = $release;
         }
     }
 
-    ksort($releases, SORT_NATURAL);
+    krsort($releases, SORT_NATURAL);
 
     return array_values($releases);
 }
