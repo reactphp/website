@@ -93,6 +93,8 @@ if ($input->hasParameterOption('--dev-server')) {
 (function (Symfony\Component\Console\Output\OutputInterface $output, string $buildDir, array $components): void {
     $output->write('Generating changelog.atom...');
 
+    $releases = array_slice(React\Website\Data\releases($components), 0, 10);
+
     $feed = new Zend\Feed\Writer\Feed();
 
     $feed->setId(getenv('DEPLOY_URL') . '/changelog.html');
@@ -101,9 +103,7 @@ if ($input->hasParameterOption('--dev-server')) {
 
     $feed->setLanguage('en');
     $feed->setTitle('Changelog');
-    $feed->setDateModified(time());
-
-    $releases = array_slice(React\Website\Data\releases($components), 0, 10);
+    $feed->setDateModified((int) $releases[0]['date']->format('U'));
 
     foreach ($releases as $release) {
         $entry = $feed->createEntry();
