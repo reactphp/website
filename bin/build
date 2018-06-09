@@ -102,7 +102,7 @@ if ($input->hasParameterOption('--dev-server')) {
     $feed->setFeedLink(getenv('DEPLOY_URL') . '/changelog.atom', 'atom');
 
     $feed->setLanguage('en');
-    $feed->setTitle('Changelog');
+    $feed->setTitle('The combined changelog for all ReactPHP components.');
     $feed->setDateModified((int) $releases[0]['date']->format('U'));
 
     foreach ($releases as $release) {
