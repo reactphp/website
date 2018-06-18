@@ -29,7 +29,7 @@
         "code": 59648
       },
       "setIdx": 0,
-      "setId": 7,
+      "setId": 3,
       "iconIdx": 0
     },
     {
@@ -58,7 +58,7 @@
         "code": 59649
       },
       "setIdx": 0,
-      "setId": 7,
+      "setId": 3,
       "iconIdx": 1
     },
     {
@@ -87,7 +87,7 @@
         "code": 59650
       },
       "setIdx": 0,
-      "setId": 7,
+      "setId": 3,
       "iconIdx": 2
     },
     {
@@ -120,7 +120,7 @@
         "code": 59653
       },
       "setIdx": 0,
-      "setId": 7,
+      "setId": 3,
       "iconIdx": 3
     },
     {
@@ -152,7 +152,7 @@
         "code": 59651
       },
       "setIdx": 0,
-      "setId": 7,
+      "setId": 3,
       "iconIdx": 4
     },
     {
@@ -183,7 +183,7 @@
         "code": 59654
       },
       "setIdx": 0,
-      "setId": 7,
+      "setId": 3,
       "iconIdx": 5
     },
     {
@@ -211,7 +211,7 @@
         "code": 59652
       },
       "setIdx": 0,
-      "setId": 7,
+      "setId": 3,
       "iconIdx": 6
     },
     {
@@ -230,15 +230,15 @@
       },
       "attrs": [],
       "properties": {
-        "id": 14,
+        "id": 7,
         "order": 35,
         "prevSize": 32,
         "code": 61447,
         "name": "book"
       },
-      "setIdx": 1,
-      "setId": 10,
-      "iconIdx": 13
+      "setIdx": 0,
+      "setId": 3,
+      "iconIdx": 7
     },
     {
       "icon": {
@@ -256,15 +256,15 @@
       },
       "attrs": [],
       "properties": {
-        "id": 20,
+        "id": 8,
         "order": 40,
         "prevSize": 32,
         "code": 61544,
         "name": "calendar"
       },
-      "setIdx": 1,
-      "setId": 10,
-      "iconIdx": 19
+      "setIdx": 0,
+      "setId": 3,
+      "iconIdx": 8
     },
     {
       "icon": {
@@ -283,15 +283,15 @@
       },
       "attrs": [],
       "properties": {
-        "id": 23,
+        "id": 9,
         "order": 31,
         "prevSize": 32,
         "code": 61603,
         "name": "chevron-down"
       },
-      "setIdx": 1,
-      "setId": 10,
-      "iconIdx": 22
+      "setIdx": 0,
+      "setId": 3,
+      "iconIdx": 9
     },
     {
       "icon": {
@@ -310,15 +310,15 @@
       },
       "attrs": [],
       "properties": {
-        "id": 26,
+        "id": 10,
         "order": 32,
         "prevSize": 32,
         "code": 61602,
         "name": "chevron-up"
       },
-      "setIdx": 1,
-      "setId": 10,
-      "iconIdx": 25
+      "setIdx": 0,
+      "setId": 3,
+      "iconIdx": 10
     },
     {
       "icon": {
@@ -336,15 +336,15 @@
       },
       "attrs": [],
       "properties": {
-        "id": 94,
+        "id": 11,
         "order": 30,
         "prevSize": 32,
         "code": 61656,
         "name": "law"
       },
-      "setIdx": 1,
-      "setId": 10,
-      "iconIdx": 93
+      "setIdx": 0,
+      "setId": 3,
+      "iconIdx": 11
     },
     {
       "icon": {
@@ -363,15 +363,15 @@
       },
       "attrs": [],
       "properties": {
-        "id": 152,
+        "id": 12,
         "order": 38,
         "prevSize": 32,
         "name": "search",
         "code": 61486
       },
-      "setIdx": 1,
-      "setId": 10,
-      "iconIdx": 151
+      "setIdx": 0,
+      "setId": 3,
+      "iconIdx": 12
     },
     {
       "icon": {
@@ -390,15 +390,42 @@
       },
       "attrs": [],
       "properties": {
-        "id": 176,
+        "id": 13,
         "order": 39,
         "prevSize": 32,
         "code": 61569,
         "name": "x"
       },
-      "setIdx": 1,
-      "setId": 10,
-      "iconIdx": 175
+      "setIdx": 0,
+      "setId": 3,
+      "iconIdx": 13
+    },
+    {
+      "icon": {
+        "paths": [
+          "M136.294 750.93c-75.196 0-136.292 61.334-136.292 136.076 0 75.154 61.1 135.802 136.292 135.802 75.466 0 136.494-60.648 136.494-135.802-0.002-74.742-61.024-136.076-136.494-136.076zM0.156 347.93v196.258c127.784 0 247.958 49.972 338.458 140.512 90.384 90.318 140.282 211.036 140.282 339.3h197.122c-0.002-372.82-303.282-676.070-675.862-676.070zM0.388 0v196.356c455.782 0 826.756 371.334 826.756 827.644h196.856c0-564.47-459.254-1024-1023.612-1024z"
+        ],
+        "tags": [
+          "feed",
+          "rss",
+          "social"
+        ],
+        "defaultCode": 60059,
+        "grid": 16,
+        "attrs": []
+      },
+      "attrs": [],
+      "properties": {
+        "ligatures": "feed2, rss",
+        "name": "feed",
+        "order": 41,
+        "id": 412,
+        "prevSize": 32,
+        "code": 60059
+      },
+      "setIdx": 2,
+      "setId": 1,
+      "iconIdx": 411
     }
   ],
   "height": 1024,

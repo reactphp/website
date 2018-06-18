@@ -10,4 +10,13 @@
     <h1>{{ component.title }} Changelog</h1>
 
     {% include 'partials/changelog.html.twig' with {releases_by_year: component_releases_by_year, is_combined_changelog: false} %}
+
+    <ul class="links">
+        <li>
+            <a href="https://github.com/{{ component.repository }}/releases.atom">
+                <i class="icon-feed" aria-hidden="true"></i>
+                Subscribe to the Changelog feed
+            </a>
+        </li>
+    </ul>
 {% endblock %}
