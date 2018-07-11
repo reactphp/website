@@ -1,5 +1,7 @@
 {% extends 'default.html.twig' %}
 
+{% block title %}ReactPHP: Event-driven, non-blocking I/O with PHP{% endblock %}
+
 {% block header %}
 <header class="header">
     <div class="header__container">
@@ -18,7 +20,10 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="320" height="476.037" viewBox="0 0 320 476.037"><path fill="#584b4f" d="M320 406.195l-86.506-155.403c-2.67 1.365-5.377 2.67-8.123 3.908-22.3 10.07-53.39 12.457-69.61 12.995l72.393 138.5H320z"/><path fill="#4F5B93" d="M255.323 36.793C231.543 12.263 199.5 0 159.193 0h-67.32C58.783 0 35.197 6.942 21.13 20.82 7.055 34.71.022 56.86.022 87.285v318.91h79.3V106.68c0-23.957 11.783-35.94 35.37-35.94h39.364c17.49 0 31.47 5.33 41.932 15.972 10.457 10.652 15.688 24.63 15.688 41.935 0 17.31-5.42 31.763-16.257 43.356-10.844 11.604-24.633 17.398-41.365 17.398h-16.168v-14.664L92.395 222.44l45.493 47.703v-14.54c8.476.042 50.736-.412 78.925-13.144 20.28-9.155 38.51-21.393 52.77-41.36s21.395-43.646 21.395-71.028c0-37.656-11.894-68.744-35.655-93.28z"/><path d="M30.717 452.275c1.628-2.276 2.442-4.976 2.442-8.096 0-4.294-1.36-7.835-4.068-10.63-2.71-2.8-6.36-4.197-10.953-4.197h-7.674c-3.772 0-6.458.794-8.063 2.377C.803 433.31 0 435.838 0 439.306v36.342h9.038v-17.165h6.5l9.037 17.165h10.47l-10.34-18.66c2.383-.865 4.388-2.436 6.012-4.712zm-8.45-3.318c-1.235 1.323-2.808 1.98-4.712 1.98H9.038v-9.426c0-2.726 1.343-4.094 4.03-4.094h4.487c1.992 0 3.586.607 4.777 1.822 1.192 1.215 1.79 2.808 1.79 4.78 0 1.973-.62 3.623-1.855 4.94zm20.253 14.466c0 4.552 1.05 7.73 3.152 9.527 2.104 1.8 5.755 2.696 10.957 2.696h16.383v-8.062H57.28c-2.17 0-3.663-.346-4.488-1.04-.826-.692-1.235-1.95-1.235-3.77v-6.438h14.367l.652-8.062h-15.02v-10.86h21.458v-8.06H42.52v34.07zm57.7-33.285c-.714-.52-1.657-.783-2.828-.783-1.17 0-2.156.284-2.957.847-.803.563-1.53 1.583-2.18 3.057l-14.822 42.387h9.428l2.537-7.994h15.54l2.6 7.994h9.427l-14.824-42.39c-.565-1.564-1.205-2.6-1.92-3.12zm-8.55 29.906l5.722-18.335 5.463 18.333H91.67zm52.826 5.43c-1.15 1.67-3.23 2.5-6.242 2.5-3.015 0-5.233-.91-6.665-2.728-1.388-1.822-2.083-5.226-2.083-10.207v-4.035c0-1.774.045-3.184.13-4.223.176-3.254.78-5.55 1.823-6.895 1.473-1.905 3.727-2.86 6.762-2.86 2.6 0 4.51.65 5.722 1.95 1.212 1.303 2.06 3.23 2.535 5.787h8.45c0-5.114-1.55-9.028-4.648-11.735-3.1-2.71-7.12-4.065-12.06-4.065-3.383 0-6.265.562-8.647 1.693-6.068 2.77-9.103 9.64-9.103 20.607v3.9c0 13.917 5.917 20.87 17.75 20.87 5.374 0 9.535-1.583 12.482-4.747 2.95-3.162 4.418-7.694 4.418-13.59h-8.386c-.344 3.514-1.095 6.105-2.24 7.774zm14.598-36.12v8.062h12.353v38.23h9.037v-38.23h12.412v-8.062" fill="#584b4f"/><path d="M217.867 429.354h-17.945v46.292h9.043V460.82h8.902c4.853 0 8.608-1.33 11.276-3.996 2.67-2.666 4-6.577 4-11.733s-1.33-9.07-4-11.733c-2.668-2.667-6.424-4.002-11.276-4.002zm4.518 21.584c-1.147 1.172-2.803 1.76-4.976 1.76h-8.447v-15.282h8.445c4.462 0 6.696 2.56 6.696 7.675 0 2.73-.573 4.68-1.72 5.85zm43.725-2.01h-16.97v-19.574h-9.044v46.292h9.043v-18.72h16.97v18.72h9.034v-46.292h-9.036m48.404 4c-2.67-2.665-6.43-4-11.282-4h-17.944v46.29h9.042v-14.823h8.902c4.853 0 8.613-1.33 11.282-3.995s3.995-6.577 3.995-11.733-1.326-9.07-3.995-11.735zm-6.763 17.584c-1.15 1.172-2.81 1.76-4.977 1.76h-8.446v-15.282h8.446c4.462 0 6.702 2.56 6.702 7.675 0 2.73-.58 4.68-1.727 5.85z" fill="#4F5B93"/></svg>
                         </div>
                         <main class="welcome__content">
-                            {{ berti.content|raw }}
+                            <h1>Event-driven, non-blocking I/O with PHP</h1>
+                            <p>
+                                ReactPHP is a low-level library for event-driven programming in PHP. At its core is an event loop, on top of which it provides low-level utilities, such as: Streams abstraction, async DNS resolver, network client/server, HTTP client/server and interaction with processes. Third-party libraries can use these components to create async network clients/servers and more.
+                            </p>
 
                             <ul class="links">
                                 <li><a href="https://github.com/reactphp"><i class="icon-github" aria-hidden="true"></i> GitHub</a></li>
@@ -59,6 +64,47 @@ $loop->run();
             </div>
         </div>
     </header>
+
+    <hr>
+
+    <div class="container">
+        <div class="wrapper wrapper--small">
+            <div class="grid grid--2cols">
+                <div>
+                    <p>
+                        ReactPHP is production ready and battle-tested with millions of installations from all kinds of projects around the world.
+                        </p>
+                    <p>
+                        Its event-driven architecture makes it a perfect fit for efficient network servers and clients handling hundreds or thousands of concurrent connections, long-running applications and many other forms of cooperative multitasking with non-blocking I/O operations.
+                    </p>
+                    <p>
+                        What makes ReactPHP special is its vivid ecosystem with hundreds of third-party libraries allowing you to integrate with many existing systems, such as common network services, database systems and other third-party APIs.
+                    </p>
+                    <p>
+                        ReactPHP is non-blocking by default. Use workers for blocking I/O.
+                    </p>
+                    <p>
+                        The event loop is based on the reactor pattern (hence the name) and strongly inspired by libraries such as EventMachine (Ruby), Twisted (Python) and Node.js (V8).
+                    </p>
+                </div>
+
+                <ul>
+                    <li><strong>Production ready</strong> and battle-tested.</li>
+                    <li><strong>Rock-solid</strong> with stable long-term support (LTS) releases.</li>
+                    <li><strong>Requires no extensions</strong> and runs on any platform - no excuses!</li>
+                    <li>Takes advantage of <strong>optional extensions</strong> to get better performance when available.</li>
+                    <li><strong>Highly recommends latest version of PHP 7+</strong> for best performance and support.</li>
+                    <li><strong>Supports legacy PHP 5.3+ and HHVM</strong> for maximum compatibility.</li>
+                    <li><strong>Well designed</strong> and <strong>reusable components</strong>.</li>
+                    <li><strong>Decoupled parts</strong> so they can be replaced by alternate implementations.</li>
+                    <li>Carefully <strong>tested</strong> (unit &amp; functional).</li>
+                    <li>Promotes <strong>standard PSRs</strong> where possible for maximum interoperability.</li>
+                    <li>Aims to be <strong>technology neutral</strong>, so you can use your preferred application stack.</li>
+                    <li>Small <strong>core team of professionals</strong> supported by <strong>large network</strong> of outside contributors.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
     <hr>
 
@@ -188,6 +234,58 @@ $loop->run();
                     </a>
                 </div>
             {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="container">
+        <div class="wrapper wrapper--small center">
+            <h2>
+                <a id="support" class="anchor" href="#support" aria-hidden="true">
+                    <span aria-hidden="true" class="octicon octicon-link"></span>
+                </a>
+                Support
+            </h2>
+
+            <p>
+                <strong>Do you have a question and need help with ReactPHP?<br> Don't worry, we're here to help!</strong>
+            </p>
+        </div>
+
+        <div class="wrapper wrapper--small">
+            <div class="grid grid--2cols">
+                <div>
+                    <p>
+                        As a first step, check the elaborate documentation that comes with each component (see links to individual documentation for each component above).
+                        If you find your question is not answered within the documentation, there's a fair chance that it may be relevant to more people.
+                        Please do not hesitate to file your question as an issue in the relevant component so others can also participate.
+                    </p>
+                    <p>
+                        Check out <code>#reactphp</code> on <code>irc.freenode.net</code>. You can use the <a href="http://webchat.freenode.net/?channels=%23reactphp" rel="nofollow">Webchat</a> if you don't already use an IRC client.
+                        Many of us are available in this channel, so many questions get answered in a few minutes to some hours. We also use this channel to announce all new releases and ongoing development efforts, so consider setting up an IRC client and idling in this channel for a little longer.
+                    </p>
+                    <p>
+                        Also follow <a href="https://twitter.com/reactphp" rel="nofollow">@reactphp</a> on Twitter for updates. We use this mostly for noteworthy, bigger updates and to keep the community updated about ongoing development efforts.
+                        You can always use the <code>#reactphp</code> hashtag if you have anything to share!
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        We're a very open project and we prefer public communication whenever possible, so that more people can participate and help getting the best solutions available.
+                        At the same time, we realize that some things are better addressed in private.
+                    </p>
+                    <p>
+                        Whether you just want to say <em>thank you</em>, want to report a security issue or  want to help sponsor a certain feature development, you can reach out to the core team in private by sending an email to <code>support@reactphp.org</code>.
+                        Please keep in mind that we're a small team of volunteers and do our best to support anybody reaching out.
+                    </p>
+                    <p>
+                        Do you want to support ReactPHP? Awesome! Let's start with letting the the world know why you think ReactPHP is awesome and try to help others getting on board!
+                        Send a tweet, write a blog post, give a talk at your local user group or conference or even write a book.
+                        There are many ways you can help. You can always reach out to us in private and help others in our support channels. Thank you!
+                    </p>
+                </div>
             </div>
         </div>
     </div>
