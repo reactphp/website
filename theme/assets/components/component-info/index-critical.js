@@ -1,1 +1,0 @@
-import './style-critical.css';

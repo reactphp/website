@@ -1,4 +1,3 @@
-import toggle from '../../lib/toggle';
-import './style.css';
+import './index.css';
 
-toggle({namespace: 'off-canvas-menu-toggle', closeOnScroll: true});
+import('./menu.js');

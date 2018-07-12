@@ -1,3 +1,25 @@
+html {
+    box-sizing: border-box;
+
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 16px;
+    line-height: 1.6;
+
+    @media (max-width: 768px) {
+        font-size: 18px;
+    }
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    color: var(--color-base);
+    background-color: #fff;
+}
+
 a {
     color: var(--color-key);
 }
@@ -5,10 +27,6 @@ a {
 a:hover {
     color: var(--color-key-light);
     text-decoration: underline;
-}
-
-.container--alt {
-    background: var(--color-background-light);
 }
 
 blockquote {
@@ -21,7 +39,7 @@ blockquote {
     font-size: .875rem;
 
     &:before {
-        content: 'ℹ︎';
+        content: "i";
         position: absolute;
         top: 12px;
         left: -14px;
@@ -35,11 +53,174 @@ blockquote {
         text-align: center;
         font-weight: bold;
         color: #fff;
-        line-height: 22px;
+        line-height: 24px;
         border-radius: 50%;
     }
 
     & :last-child {
         margin-bottom: 0;
     }
+}
+
+p, ul, ol, hr, h1, h2, h3, h4, h5, h6, form, fieldset, blockquote {
+    margin: 0 0 16px 0;
+}
+
+ul ul {
+    margin-bottom: 0;
+}
+
+hr {
+    clear: both;
+    height: 0;
+    border: 0;
+    border-bottom: 1px dashed var(--color-background-light);
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    color: var(--color-base);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Source Sans Pro","Helvetica Neue",Arial,sans-serif;
+    font-weight: 700;
+
+    & a,
+    & a:hover {
+        text-decoration: none;
+    }
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 32px;
+    color: var(--color-key);
+    letter-spacing: -1px;
+
+    & a,
+    & a:hover {
+        color: var(--color-key);
+    }
+}
+
+h1:not(:first-child) {
+    margin-top: 32px;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 32px;
+    color: var(--color-key);
+
+    & a,
+    & a:hover {
+        color: var(--color-key);
+    }
+}
+
+h2:not(:first-child) {
+    margin-top: 32px;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-bottom: 24px;
+    color: var(--color-base);
+
+    & a,
+    & a:hover {
+        color: var(--color-base);
+    }
+}
+
+h3:not(:first-child) {
+    margin-top: 24px;
+}
+
+h4 {
+    font-size: 1.25rem;
+    color: var(--color-key);
+
+    & a,
+    & a:hover {
+        color: var(--color-key);
+    }
+}
+
+h4:not(:first-child) {
+    margin-top: 24px;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+        margin-bottom: 32px;
+    }
+}
+
+.container {
+    padding: 32px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 16px;
+    }
+}
+
+.wrapper {
+    max-width: 1600px;
+    margin: auto;
+}
+
+.wrapper--medium {
+    max-width: 1280px;
+}
+
+.wrapper--small {
+    max-width: 960px;
+    margin: auto;
+}
+
+.wrapper--narrow {
+    max-width: 640px;
+}
+
+.main {
+    width: calc(98% - 400px);
+    margin-bottom: 32px;
+}
+
+.sidebar {
+    width: calc(400px - 2%);
+    margin-bottom: 32px;
+}
+
+@media (max-width: 1024px) {
+    .main,
+    .sidebar {
+        width: auto;
+        margin-top: 16px;
+    }
+}
+
+.visually-hidden {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
 }

@@ -1,0 +1,56 @@
+@import "../../styles/variables.css";
+
+.version-selector__button {
+    &[aria-expanded="true"] {
+        z-index: 999;
+        background: var(--color-base) !important;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        box-shadow: none;
+
+        & [class="icon-chevron-down"] {
+            display: none;
+        }
+        & [class="icon-chevron-up"] {
+            display: inline-block;
+        }
+    }
+}
+
+.version-selector__panel {
+    z-index: 998;
+    left: -115px;
+
+    background: var(--color-base);
+    padding: 1rem;
+    width: 300px;
+    border-radius: 4px;
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .33);
+
+    font-weight: normal;
+
+    &[aria-hidden="false"] {
+        position: absolute;
+        visibility: visible;
+        top: auto;
+    }
+}
+
+.version-selector__list {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    list-style: none;
+    margin-left: -4px;
+
+    & li {
+        margin: 4px;
+        width: calc(25% - 8px);
+    }
+
+    & a {
+        display: block;
+        text-align: center;
+    }
+}

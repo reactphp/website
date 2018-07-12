@@ -1,25 +1,8 @@
+import { query } from 'dom-query-helpers';
+import { dispatch, on, off } from 'dom-event-helpers';
+
 const win = typeof window !== 'undefined' ? window : this;
 const doc = win.document;
-const docEl = doc.documentElement;
-
-const query = (el) => [].slice.call(doc.querySelectorAll(el));
-
-function trigger(element, eventName, detail) {
-    let event;
-
-    try {
-        event = new CustomEvent(eventName, {
-            detail: detail,
-            bubbles: true,
-            cancelable: true
-        });
-    } catch (e) {
-        event = doc.createEvent('CustomEvent');
-        event.initCustomEvent(eventName, true, true, detail);
-    }
-
-    element.dispatchEvent(event);
-}
 
 function isElementInViewport(element) {
     const rect = element.getBoundingClientRect();
@@ -33,16 +16,6 @@ function isElementInViewport(element) {
 }
 
 export default function toggle(options = {}) {
-    if (
-        !('addEventListener' in win) ||
-        !('querySelector' in doc) ||
-        !docEl.classList
-    ) {
-        return {
-            destroy: function() {}
-        }
-    }
-
     const settings = options || {};
     const namespace = settings.namespace || 'toggle';
 
@@ -53,7 +26,7 @@ export default function toggle(options = {}) {
 
     function open(control, id, target) {
         query(`[aria-controls="${id}"]`)
-            .forEach((c) => c.setAttribute('aria-expanded', 'true'));
+            .forEach(c => c.setAttribute('aria-expanded', 'true'));
 
         target.classList.add(`${namespace}--ready`);
 
@@ -61,7 +34,7 @@ export default function toggle(options = {}) {
         target.setAttribute('tabindex', '-1');
 
         // Delay focus to avoid page scroll jumps
-        setTimeout(function() {
+        setTimeout(() => {
             target.focus();
         }, 0);
 
@@ -88,17 +61,23 @@ export default function toggle(options = {}) {
             }
         };
 
-        doc.addEventListener('keyup', instance.keyup, instance.evtOptions);
+        on(doc, 'keyup', instance.keyup, instance.evtOptions);
 
-        target.addEventListener('mouseenter', instance.activate, instance.evtOptions);
-        target.addEventListener('mouseleave', instance.deactivate, instance.evtOptions);
-        target.addEventListener('touchstart', instance.activate, instance.evtOptions);
-        target.addEventListener('touchend', instance.deactivate, instance.evtOptions);
+        on(target, 'mouseenter', instance.activate, instance.evtOptions);
+        on(target, 'mouseleave', instance.deactivate, instance.evtOptions);
+        on(target, 'touchstart', instance.activate, instance.evtOptions);
+        on(target, 'touchend', instance.deactivate, instance.evtOptions);
 
-        trigger(
+        dispatch(
             target,
             `${namespace}:open`,
-            {control: control}
+            {
+                bubbles: true,
+                cancelable: true,
+                detail: {
+                    control: control
+                }
+            }
         );
     }
 
@@ -118,12 +97,12 @@ export default function toggle(options = {}) {
 
         delete instances[id];
 
-        target.removeEventListener('mouseenter', activate, evtOptions);
-        target.removeEventListener('mouseleave', deactivate, evtOptions);
-        target.removeEventListener('touchstart', activate, evtOptions);
-        target.removeEventListener('touchend', deactivate, evtOptions);
+        off(target, 'mouseenter', activate, evtOptions);
+        off(target, 'mouseleave', deactivate, evtOptions);
+        off(target, 'touchstart', activate, evtOptions);
+        off(target, 'touchend', deactivate, evtOptions);
 
-        doc.removeEventListener('keyup', keyup, evtOptions);
+        off(doc, 'keyup', keyup, evtOptions);
 
         if (active === id) {
             active = null;
@@ -134,16 +113,22 @@ export default function toggle(options = {}) {
         target.blur();
 
         query(`[aria-controls="${id}"]`)
-            .forEach((c) => c.setAttribute('aria-expanded', 'false'));
+            .forEach(c => c.setAttribute('aria-expanded', 'false'));
 
         if (returnFocus && isElementInViewport(control)) {
             control.focus();
         }
 
-        trigger(
+        dispatch(
             target,
             `${namespace}:close`,
-            {control: control}
+            {
+                bubbles: true,
+                cancelable: true,
+                detail: {
+                    control: control
+                }
+            }
         );
     }
 
@@ -211,7 +196,7 @@ export default function toggle(options = {}) {
         }
     };
 
-    doc.addEventListener('click', onDocClick);
+    const removeDocClickListener = on(doc, 'click', onDocClick);
 
     const onWindowScroll = function() {
         if (!active && !!settings.closeOnScroll) {
@@ -219,12 +204,12 @@ export default function toggle(options = {}) {
         }
     };
 
-    win.addEventListener('scroll', onWindowScroll);
+    const removeWinScrollListener = on(win, 'scroll', onWindowScroll);
 
     return {
         destroy: function() {
-            doc.removeEventListener('click', onDocClick);
-            win.removeEventListener('scroll', onWindowScroll);
+            removeDocClickListener();
+            removeWinScrollListener();
 
             closeAll();
         }

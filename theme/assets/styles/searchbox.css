@@ -3,6 +3,12 @@
 
     &,
     &:focus {
+        appearance: none;
+        padding: 6px 8px 6px 32px;
+        font-size: .875rem;
+        line-height: 24px;
+        color: var(--color-base);
+        border: 0;
         background: var(--color-background-light) url(../img/search.svg) no-repeat 10px center;
         background-size: 16px 16px;
         box-shadow: var(--box-shadow-light);
@@ -33,6 +39,10 @@
 
 .searchbox--collapsed {
     &:not(:focus) {
+        background-color: transparent;
+        border: 0;
+        width: 32px !important;
+        margin-right: -12px;
         cursor: pointer;
         box-shadow: none;
 

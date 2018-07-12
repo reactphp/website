@@ -29,6 +29,7 @@
 }
 
 .component-info__title {
+    display: flex;
     font-size: 1.5rem;
     line-height: 1rem;
     margin-bottom: 1rem;
@@ -78,12 +79,20 @@
 }
 
 .component-info__contributors {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    list-style: none;
+
     & li {
         padding: 0 4px 4px 0;
         margin: 0;
     }
 
     & img {
+        display: block;
+        width: 40px;
+        height: auto;
         border-radius: 2px;
         box-shadow: var(--box-shadow-lighter);
     }

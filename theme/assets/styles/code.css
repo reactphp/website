@@ -3,6 +3,7 @@ tt, code, pre {
 }
 
 code, tt {
+    font-size: .75rem;
     padding: .3rem .45rem;
     margin: 0;
     background-color: rgba(0, 0, 0, 0.05);
@@ -20,6 +21,12 @@ del code {
 pre {
     word-wrap: normal;
     text-align: left;
+    font-size: .875rem;
+    line-height: 1.45;
+
+    @media (max-width: 768px) {
+        font-size: .75rem;
+    }
 }
 
 pre > code {
