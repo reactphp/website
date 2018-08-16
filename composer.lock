@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c0bd5d31a57025a3d626ba23b5b37d20",
+    "content-hash": "578a0c25d65181f20e9ef4e82912d6ca",
     "packages": [],
     "packages-dev": [
         {
@@ -259,6 +259,53 @@
                 "watching"
             ],
             "time": "2016-03-16T15:22:20+00:00"
+        },
+        {
+            "name": "igorw/retry",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/igorw/retry.git",
+                "reference": "c34c68c9e2a6e0f1bbab44c1dfceb73ba2a270a3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/igorw/retry/zipball/c34c68c9e2a6e0f1bbab44c1dfceb73ba2a270a3",
+                "reference": "c34c68c9e2a6e0f1bbab44c1dfceb73ba2a270a3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/retry.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Igor Wiedler",
+                    "email": "igor@wiedler.ch"
+                }
+            ],
+            "description": "A tiny library for retrying failing operations.",
+            "keywords": [
+                "failure"
+            ],
+            "time": "2014-09-20T11:10:31+00:00"
         },
         {
             "name": "jsor/berti",
@@ -2468,7 +2515,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "igorw/retry": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

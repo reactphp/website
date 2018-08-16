@@ -4,6 +4,7 @@ namespace React\Website\Data;
 
 use Github\Client;
 use Github\ResultPager;
+use function igorw\retry;
 use Psr\Cache\CacheItemPoolInterface;
 
 function components(Client $client, CacheItemPoolInterface $markdownCache): array
@@ -12,7 +13,18 @@ function components(Client $client, CacheItemPoolInterface $markdownCache): arra
         [$username, $repository] = explode('/', $component['repository']);
 
         $component['contributors'] = $client->repo()->contributors($username, $repository);
-        $component['participation'] = $client->repo()->participation($username, $repository);
+
+        $component['participation'] = retry(3, function () use ($client, $username, $repository){
+            $participation = $client->repo()->participation($username, $repository);
+
+            if (!isset($participation['all'])) {
+                throw new \RuntimeException(
+                    "Could not fetch participation for $username/$repository from the Github API"
+                );
+            }
+
+            return $participation;
+        });
 
         $apiReleases = (new ResultPager($client))
             ->fetchAll(
