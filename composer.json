@@ -24,6 +24,7 @@
         "symfony/process": "^3.2",
         "vlucas/phpdotenv": "^2.4",
         "elvanto/litemoji": "^1.0",
-        "zendframework/zend-feed": "^2.10"
+        "zendframework/zend-feed": "^2.10",
+        "igorw/retry": "^1.0@dev"
     }
 }
