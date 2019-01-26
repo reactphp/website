@@ -19,8 +19,8 @@ module.exports = () => {
         },
         output: {
             path: path.resolve(process.cwd(), targetPath),
-            filename: '[name].[contenthash].js',
-            chunkFilename: '[name].[contenthash].js',
+            filename: '[name].[contenthash:8].js',
+            chunkFilename: '[name].[contenthash:8].js',
         },
         optimization: {
             runtimeChunk: 'single'
@@ -81,13 +81,23 @@ module.exports = () => {
                 {
                     test: /\.(gif|png|jpe?g|svg)$/i,
                     use: [
-                        'file-loader',
+                        {
+                            loader: 'file-loader',
+                            options: {
+                                name: '[name].[hash:8].[ext]',
+                            }
+                        },
                     ],
                 },
                 {
                     test: /\.(woff|woff2|eot|ttf|otf)$/,
                     use: [
-                        'file-loader',
+                        {
+                            loader: 'file-loader',
+                            options: {
+                                name: '[name].[hash:8].[ext]',
+                            }
+                        },
                     ],
                 },
             ],
@@ -99,8 +109,8 @@ module.exports = () => {
             // https://webpack.js.org/guides/caching/#module-identifiers
             new webpack.HashedModuleIdsPlugin(),
             new MiniCssExtractPlugin({
-                filename: '[name].[contenthash].css',
-                chunkFilename: '[name].[contenthash].css',
+                filename: '[name].[contenthash:8].css',
+                chunkFilename: '[name].[contenthash:8].css',
             }),
             new PostCSSAssetsPlugin({
                 plugins: [
