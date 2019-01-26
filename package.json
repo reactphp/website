@@ -18,6 +18,7 @@
   ],
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
+    "ctrly": "^0.6.0",
     "docsearch.js": "^2.6.2",
     "domestique": "^1.6.0"
   },

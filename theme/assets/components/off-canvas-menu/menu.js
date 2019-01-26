@@ -1,5 +1,5 @@
-import toggle from '../../lib/toggle';
+import ctrly from 'ctrly/src/ctrly';
 
 import './menu.css';
 
-toggle({namespace: 'off-canvas-menu-toggle', closeOnScroll: true});
+ctrly({selector: '[data-off-canvas-menu-control]', closeOnScroll: true});
