@@ -1,5 +1,4 @@
-import { query } from 'dom-query-helpers';
-import { dispatch, on, off } from 'dom-event-helpers';
+import { find, dispatch, on, off } from 'domestique';
 
 const win = typeof window !== 'undefined' ? window : this;
 const doc = win.document;
@@ -25,7 +24,7 @@ export default function toggle(options = {}) {
     let active;
 
     function open(control, id, target) {
-        query(`[aria-controls="${id}"]`)
+        find(`[aria-controls="${id}"]`)
             .forEach(c => c.setAttribute('aria-expanded', 'true'));
 
         target.classList.add(`${namespace}--ready`);
@@ -112,7 +111,7 @@ export default function toggle(options = {}) {
         target.removeAttribute('tabindex');
         target.blur();
 
-        query(`[aria-controls="${id}"]`)
+        find(`[aria-controls="${id}"]`)
             .forEach(c => c.setAttribute('aria-expanded', 'false'));
 
         if (returnFocus && isElementInViewport(control)) {

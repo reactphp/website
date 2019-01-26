@@ -19,8 +19,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
     "docsearch.js": "^2.6.2",
-    "dom-event-helpers": "^1.1.0",
-    "dom-query-helpers": "^1.1.0"
+    "domestique": "^1.6.0"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
