@@ -64,7 +64,6 @@ module.exports = () => {
                             loader: 'css-loader',
                             options: {
                                 importLoaders: 1,
-                                minimize: false, // Minification done by the PostCSSAssetsPlugin
                             }
                         },
                         {
