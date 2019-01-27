@@ -1,5 +1,5 @@
-import toggle from '../../lib/toggle';
+import ctrly from 'ctrly/src/ctrly';
 
 import './selector.css';
 
-toggle({namespace: 'version-selector-toggle'});
+ctrly({selector: '[data-version-selector-control]'});
