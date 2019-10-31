@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const PostCSSAssetsPlugin = require('postcss-assets-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 
@@ -44,6 +44,7 @@ module.exports = () => {
                                         '@babel/preset-env',
                                         {
                                             useBuiltIns: 'entry',
+                                            corejs: 3,
                                             modules: false,
                                             debug: false,
                                         }
@@ -71,8 +72,14 @@ module.exports = () => {
                             options: {
                                 plugins: [
                                     require('postcss-import')(),
-                                    require('postcss-cssnext')(),
-                                    require('postcss-flexbugs-fixes')()
+                                    require('postcss-flexbugs-fixes')(),
+                                    require('postcss-preset-env')({
+                                        stage: 0,
+                                        autoprefixer: {
+                                            flexbox: 'no-2009',
+                                            grid: true,
+                                        }
+                                    }),
                                 ]
                             }
                         }
@@ -103,9 +110,7 @@ module.exports = () => {
             ],
         },
         plugins: [
-            new CleanWebpackPlugin([targetPath + '/*'], {
-                root: process.cwd()
-            }),
+            new CleanWebpackPlugin(),
             // https://webpack.js.org/guides/caching/#module-identifiers
             new webpack.HashedModuleIdsPlugin(),
             new MiniCssExtractPlugin({

@@ -56,8 +56,14 @@ module.exports = {
                         options: {
                             plugins: [
                                 require('postcss-import')(),
-                                require('postcss-cssnext')(),
-                                require('postcss-flexbugs-fixes')()
+                                require('postcss-flexbugs-fixes')(),
+                                require('postcss-preset-env')({
+                                    stage: 0,
+                                    autoprefixer: {
+                                        flexbox: 'no-2009',
+                                        grid: true,
+                                    }
+                                }),
                             ]
                         }
                     }
