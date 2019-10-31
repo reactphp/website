@@ -6,13 +6,10 @@
     z-index: 1000;
     overflow-y: auto;
     overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
-    transition: all .35s cubic-bezier(0.23, 1, 0.32, 1);
-
     outline: none;
 
     &[aria-hidden="false"] {
-        transform: translate3D(0, 0, 0);
+        pointer-events: auto;
     }
 }
 
@@ -21,9 +18,19 @@
     right: 0;
     width: 285px;
     height: 100%;
+    overflow-y: auto;
     overflow-x: hidden;
     background: var(--color-background-lightest);
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.33);
+
+    -webkit-overflow-scrolling: touch;
+    transition: all .35s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.off-canvas-menu[aria-hidden="false"] {
+    & .off-canvas-menu__content {
+        transform: translate3D(0, 0, 0);
+    }
 }
 
 .off-canvas-menu__close {
