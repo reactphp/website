@@ -53,6 +53,21 @@
     text-decoration: none;
 }
 
+.welcome__team img {
+    border-radius: 50%;
+    max-width: 190px;
+    display: inline-block;
+}
+
+.welcome__team h3 {
+    display: block;
+    margin: .2em 0;
+}
+
+.welcome__team div.grid > * {
+    margin-bottom: 1em;
+}
+
 @media (max-width: 768px) {
     .welcome__content {
         padding: 32px 16px 16px 16px;
