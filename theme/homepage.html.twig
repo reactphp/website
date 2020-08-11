@@ -43,10 +43,12 @@
 ```php
 $loop = React\EventLoop\Factory::create();
 
-$server = new React\Http\Server(function (Psr\Http\Message\ServerRequestInterface $request) {
-    return new React\Http\Response(
+$server = new React\Http\Server($loop, function (Psr\Http\Message\ServerRequestInterface $request) {
+    return new React\Http\Message\Response(
         200,
-        array('Content-Type' => 'text/plain'),
+        array(
+            'Content-Type' => 'text/plain'
+        ),
         "Hello World!\n"
     );
 });
