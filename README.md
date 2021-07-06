@@ -1,5 +1,7 @@
 # Website
 
+[![CI status](https://github.com/reactphp/website/workflows/CI/badge.svg)](https://github.com/reactphp/website/actions)
+
 Source code of reactphp.org.
 
 ## Setup
@@ -63,16 +65,19 @@ Note that this will publish any changes you've made to your local repository,
 including any uncommitted ones. There should usually be no need to do this
 manually, see next chapter for auto-deployment.
 
-## Auto-Deployment with Travis CI
+## Auto-Deployment
 
-The website can be automatically deployed via the Travis CI
-[GitHub Pages Deployment](https://docs.travis-ci.com/user/deployment/pages/)
-feature.
+The website can be automatically deployed via the GitHub Pages feature.
 
-Make sure, the required environment variables are set in the repository settings
-on Travis CI: `GITHUB_TOKEN` 
-([a personal access token](https://docs.travis-ci.com/user/deployment/pages/#Setting-the-GitHub-token)), 
-`DEPLOY_REPO`, `DEPLOY_TARGET_BRANCH` and `DEPLOY_FQDN`.
+Any time a commit is merged (such as when a PR is merged), GitHub actions will
+automatically build and deploy the website. This is done by running the above
+deployment script (see previous chapter).
+
+> Repository setup:
+> We're using a SSH deploy key for pushing to this target repository.
+> Make sure the required `DEPLOY_KEY` secret is set in the repository settings on GitHub.
+> See [action documentation](https://github.com/JamesIves/github-pages-deploy-action#using-an-ssh-deploy-key-)
+> for more details.
 
 ## License
 
