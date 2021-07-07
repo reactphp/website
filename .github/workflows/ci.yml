@@ -2,6 +2,7 @@ name: Deploy
 
 on:
   push:
+  pull_request:
   workflow_dispatch:
 
 jobs:
@@ -16,4 +17,6 @@ jobs:
       - run: mkdir ~/.ssh && echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_rsa && chmod 400 ~/.ssh/id_rsa
       - run: echo 'GITHUB_TOKEN="${{ secrets.GITHUB_TOKEN }}"' > .env && cat .env.dist >> .env
       - run: git config --global user.name "GitHub Actions" && git config --global user.email "actions@github.com"
-      - run: bin/build --deploy
+      - run: bin/build
+      - run: bin/build --deploy --no-component-update
+        if: ${{ github.ref == 'refs/heads/main' }}
