@@ -44,6 +44,25 @@ $ npm run-script build
   under version control. Run `npm install` to install and later commit any changes
   in `static-files/assets/`.
 
+## Deploy
+
+Once built (see previous chapter), deployment is as simple as hosting the static
+website contents of the `tmp/build` directory behind a webserver of your choice.
+
+We use GitHub Pages to deploy this to the live site. This is done by pushing the
+contents of the `tmp/build` directory to the repository hosted in
+[reactphp/reactphp.github.io](https://github.com/reactphp/reactphp.github.io).
+
+This deployment can be started by executing this:
+
+```bash
+$ bin/build --deploy
+```
+
+Note that this will publish any changes you've made to your local repository,
+including any uncommitted ones. There should usually be no need to do this
+manually, see next chapter for auto-deployment.
+
 ## Auto-Deployment with Travis CI
 
 The website can be automatically deployed via the Travis CI
