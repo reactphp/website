@@ -6,6 +6,9 @@ try {
     // Ignore missing .env
 }
 
+// use UTC timezone for all dates on website (release dates in changelogs)
+date_default_timezone_set('UTC');
+
 return function (Pimple\Container $container) {
     $container['markdown.cache'] = function () {
         return new Symfony\Component\Cache\Adapter\FilesystemAdapter(

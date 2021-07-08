@@ -43,11 +43,21 @@ function components(Client $client, CacheItemPoolInterface $markdownCache): arra
             if ($cacheItem->isHit()) {
                 $html = $cacheItem->get();
             } else {
-                $html = $client->markdown()->render(
-                    $release['body'],
-                    'gfm',
-                    $component['repository']
-                );
+                try{
+                    $html = $client->markdown()->render(
+                        $release['body'],
+                        'gfm',
+                        $component['repository']
+                    );
+                } catch (\Exception $e) {
+                    echo 'Temporary error, will retry in 60s: ' . $e->getMessage() . PHP_EOL;
+                    sleep(60);
+                    $html = $client->markdown()->render(
+                        $release['body'],
+                        'gfm',
+                        $component['repository']
+                    );
+                }
 
                 $cacheItem->set($html);
                 $markdownCache->save($cacheItem);

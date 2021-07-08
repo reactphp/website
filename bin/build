@@ -16,7 +16,6 @@ call_user_func(include $configFile, $container);
 function run($command, $cwd = null)
 {
     $process = new Symfony\Component\Process\Process($command, $cwd);
-    $process->setTty(true);
 
     $process->mustRun(function ($type, $buffer) {
         echo $buffer;
