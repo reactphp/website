@@ -29,17 +29,12 @@ return [
     [
         'title' => 'HTTP',
         'repository' => 'reactphp/http',
-        'category' => 'Protocol Components'
-    ],
-    [
-        'title' => 'HTTPClient',
-        'repository' => 'reactphp/http-client',
-        'category' => 'Protocol Components'
+        'category' => 'Network Components'
     ],
     [
         'title' => 'DNS',
         'repository' => 'reactphp/dns',
-        'category' => 'Protocol Components'
+        'category' => 'Network Components'
     ],
     [
         'title' => 'Cache',
@@ -60,5 +55,15 @@ return [
         'title' => 'PromiseStream',
         'repository' => 'reactphp/promise-stream',
         'category' => 'Utility Components'
+    ],
+    [
+        'title' => 'HttpClient',
+        'repository' => 'reactphp/http-client',
+        'category' => 'Legacy Components'
+    ],
+    [
+        'title' => 'SocketClient',
+        'repository' => 'reactphp/socket-client',
+        'category' => 'Legacy Components'
     ],
 ];
