@@ -73,7 +73,7 @@ if ($input->hasParameterOption('--dev-server')) {
         '127.0.0.1:8000'
     );
 
-    putenv('DEPLOY_URL=' . $address);
+    putenv('DEPLOY_URL=http://' . $address);
 
     call_user_func(
         $container['server'],

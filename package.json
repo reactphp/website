@@ -17,30 +17,29 @@
     "not ie < 10"
   ],
   "dependencies": {
-    "core-js": "^3.3.5",
-    "ctrly": "^0.6.0",
+    "core-js": "^3.21.0",
+    "ctrly": "^0.7.0",
     "docsearch.js": "^2.6.3",
-    "domestique": "^1.6.0"
+    "domestique": "^1.7.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.6.4",
-    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
-    "@babel/preset-env": "^7.6.3",
-    "babel-loader": "^8.0.6",
-    "clean-webpack-plugin": "^3.0.0",
-    "css-loader": "^3.2.0",
-    "cssnano": "^4.1.10",
-    "file-loader": "^4.2.0",
-    "mini-css-extract-plugin": "^0.8.0",
-    "postcss-assets-webpack-plugin": "^3.0.0",
-    "postcss-flexbugs-fixes": "^4.1.0",
-    "postcss-import": "^12.0.1",
-    "postcss-loader": "^3.0.0",
-    "postcss-preset-env": "^6.7.0",
-    "style-loader": "^1.0.0",
-    "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.9.0",
-    "webpack-manifest-plugin": "^3.0.0-rc.0"
+    "@babel/core": "^7.17.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/preset-env": "^7.16.11",
+    "babel-loader": "^8.2.3",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.6.0",
+    "cssnano": "^5.0.16",
+    "mini-css-extract-plugin": "^2.5.3",
+    "postcss-assets-webpack-plugin": "^4.1.2",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-import": "^14.0.2",
+    "postcss-loader": "^6.2.1",
+    "postcss-preset-env": "^7.3.1",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.68.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4",
+    "webpack-manifest-plugin": "^4.1.1"
   }
 }

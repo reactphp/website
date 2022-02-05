@@ -1,9 +1,8 @@
 const path = require('path');
-const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const PostCSSAssetsPlugin = require('postcss-assets-webpack-plugin');
-const ManifestPlugin = require('webpack-manifest-plugin');
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 
 module.exports = () => {
     const mode = 'production';
@@ -19,8 +18,10 @@ module.exports = () => {
         },
         output: {
             path: path.resolve(process.cwd(), targetPath),
+            publicPath: '', // see https://github.com/shellscape/webpack-manifest-plugin/issues/229#issuecomment-737617994
             filename: '[name].[contenthash:8].js',
             chunkFilename: '[name].[contenthash:8].js',
+            assetModuleFilename: '[name].[contenthash:8][ext][query]'
         },
         optimization: {
             runtimeChunk: 'single'
@@ -70,49 +71,35 @@ module.exports = () => {
                         {
                             loader: 'postcss-loader',
                             options: {
-                                plugins: [
-                                    require('postcss-import')(),
-                                    require('postcss-flexbugs-fixes')(),
-                                    require('postcss-preset-env')({
-                                        stage: 0,
-                                        autoprefixer: {
-                                            flexbox: 'no-2009',
-                                            grid: true,
-                                        }
-                                    }),
-                                ]
+                                postcssOptions: {
+                                    plugins: [
+                                        require('postcss-import')(),
+                                        require('postcss-flexbugs-fixes')(),
+                                        require('postcss-preset-env')({
+                                            stage: 0,
+                                            autoprefixer: {
+                                                flexbox: 'no-2009',
+                                                grid: true,
+                                            }
+                                        }),
+                                    ]
+                                }
                             }
                         }
                     ],
                 },
                 {
                     test: /\.(gif|png|jpe?g|svg)$/i,
-                    use: [
-                        {
-                            loader: 'file-loader',
-                            options: {
-                                name: '[name].[hash:8].[ext]',
-                            }
-                        },
-                    ],
+                    type: 'asset/resource',
                 },
                 {
                     test: /\.(woff|woff2|eot|ttf|otf)$/,
-                    use: [
-                        {
-                            loader: 'file-loader',
-                            options: {
-                                name: '[name].[hash:8].[ext]',
-                            }
-                        },
-                    ],
+                    type: 'asset/resource',
                 },
             ],
         },
         plugins: [
             new CleanWebpackPlugin(),
-            // https://webpack.js.org/guides/caching/#module-identifiers
-            new webpack.HashedModuleIdsPlugin(),
             new MiniCssExtractPlugin({
                 filename: '[name].[contenthash:8].css',
                 chunkFilename: '[name].[contenthash:8].css',
@@ -128,7 +115,7 @@ module.exports = () => {
                     }),
                 ],
             }),
-            new ManifestPlugin(),
+            new WebpackManifestPlugin({}),
         ]
     };
 };

@@ -29,6 +29,7 @@ module.exports = {
                                     '@babel/preset-env',
                                     {
                                         useBuiltIns: 'entry',
+                                        corejs: 3,
                                         modules: false,
                                         debug: false,
                                     }
@@ -54,38 +55,36 @@ module.exports = {
                     {
                         loader: 'postcss-loader',
                         options: {
-                            plugins: [
-                                require('postcss-import')(),
-                                require('postcss-flexbugs-fixes')(),
-                                require('postcss-preset-env')({
-                                    stage: 0,
-                                    autoprefixer: {
-                                        flexbox: 'no-2009',
-                                        grid: true,
-                                    }
-                                }),
-                            ]
+                            postcssOptions: {
+                                plugins: [
+                                    require('postcss-import')(),
+                                    require('postcss-flexbugs-fixes')(),
+                                    require('postcss-preset-env')({
+                                        stage: 0,
+                                        autoprefixer: {
+                                            flexbox: 'no-2009',
+                                            grid: true,
+                                        }
+                                    }),
+                                ]
+                            }
                         }
                     }
                 ],
             },
             {
                 test: /\.(gif|png|jpe?g|svg)$/i,
-                use: [
-                    'file-loader',
-                ],
+                type: 'asset/resource',
             },
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/,
-                use: [
-                    'file-loader',
-                ],
+                type: 'asset/resource',
             },
         ],
     },
     devtool: 'eval',
     devServer: {
-        publicPath: 'http://localhost:8080/_assets/',
+        static: './static-files/',
         headers: {
             'Access-Control-Allow-Origin': '*'
         }
