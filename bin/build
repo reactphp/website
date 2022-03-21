@@ -59,7 +59,7 @@ if (!$input->hasParameterOption('--no-component-update')) {
             $output,
             $componentsDir,
             $component['name'],
-            $component['git_url'],
+            $component['clone_url'],
             $component['releases'][0]['tag']
         );
 
