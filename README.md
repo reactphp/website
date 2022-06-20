@@ -15,14 +15,14 @@ Source code of reactphp.org.
    repository data and using the access token ensures that you don't run into
    API rate limits.
 
-2. Install dependencies with `$ composer install`.
+2. Install dependencies with `composer install`.
 
 ## Build
 
 Once set up, you can build the website by executing this:
 
 ```bash
-$ bin/build
+bin/build
 ```
 
 This script will fetch all project repositories and then rebuild the entire website.
@@ -32,14 +32,14 @@ If you're working on the website source code, you may want to skip fetching all
 components on every build like this:
 
 ```bash
-$ bin/build --no-component-update
+bin/build --no-component-update
 ```
 
 If you're working on the website CSS or Javascript code, you will have to
 rebuild the static assets like this:
 
 ```bash
-$ npm run-script build
+npm run-script build
 ```
 
 > Note that compiled assets are expected to change much less frequently and are
@@ -58,7 +58,7 @@ contents of the `tmp/build` directory to the repository hosted in
 This deployment can be started by executing this:
 
 ```bash
-$ bin/build --deploy
+bin/build --deploy
 ```
 
 Note that this will publish any changes you've made to your local repository,
