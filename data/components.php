@@ -17,6 +17,11 @@ return [
         'category' => 'Core Components'
     ],
     [
+        'title' => 'Async',
+        'repository' => 'reactphp/async',
+        'category' => 'Core Components'
+    ],
+    [
         'title' => 'Socket',
         'repository' => 'reactphp/socket',
         'category' => 'Network Components'

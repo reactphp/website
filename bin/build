@@ -22,17 +22,20 @@ function run($command, $cwd = null)
     });
 }
 
-function checkout($dir, $gitUrl, $tag)
+function checkout($dir, $gitUrl, ?string $tag)
 {
     if (!is_dir($dir)) {
         run('git clone ' . $gitUrl . ' "' . $dir . '"');
     }
 
     run('git fetch', $dir);
-    run('git checkout -f ' . $tag, $dir);
+
+    if ($tag !== null) {
+        run('git checkout -f ' . $tag, $dir);
+    }
 }
 
-function component(Symfony\Component\Console\Output\ConsoleOutput $output, $componentsDir, $name, $gitUrl, string $latestVersion)
+function component(Symfony\Component\Console\Output\ConsoleOutput $output, $componentsDir, $name, $gitUrl, ?string $latestVersion)
 {
     $componentDir = $componentsDir . DIRECTORY_SEPARATOR . $name;
 
@@ -60,7 +63,7 @@ if (!$input->hasParameterOption('--no-component-update')) {
             $componentsDir,
             $component['name'],
             $component['clone_url'],
-            $component['releases'][0]['tag']
+            $component['releases'] ? $component['releases'][0]['tag'] : null
         );
 
         $output->writeln('<info>Done.</info>');
