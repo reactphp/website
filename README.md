@@ -1,6 +1,7 @@
 # Website
 
-[![CI status](https://github.com/reactphp/website/workflows/CI/badge.svg)](https://github.com/reactphp/website/actions)
+[![CI status](https://github.com/reactphp/website/actions/workflows/ci.yml/badge.svg)](https://github.com/reactphp/website/actions)
+![Last deployed](https://img.shields.io/github/last-commit/reactphp/reactphp.github.io?label=last%20deployed&logo=github)
 
 Source code of reactphp.org.
 
