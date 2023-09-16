@@ -1,7 +1,7 @@
 # Website
 
 [![CI status](https://github.com/reactphp/website/actions/workflows/ci.yml/badge.svg)](https://github.com/reactphp/website/actions)
-![Last deployed](https://img.shields.io/github/last-commit/reactphp/reactphp.github.io?label=last%20deployed&logo=github)
+[![Last deployed](https://img.shields.io/github/last-commit/reactphp/reactphp.github.io?label=last%20deployed&logo=github)](https://github.com/reactphp/reactphp.github.io)
 
 Source code of reactphp.org.
 
@@ -79,6 +79,10 @@ deployment script (see previous chapter).
 > Make sure the required `DEPLOY_KEY` secret is set in the repository settings on GitHub.
 > See [action documentation](https://github.com/JamesIves/github-pages-deploy-action#using-an-ssh-deploy-key-)
 > for more details.
+> On top of this, you're recommended to add a [personal access token](https://github.com/settings/tokens)
+> as a repository secret with the name `PAT` to avoid running into secondary rate limits.
+> If this secret is not found, it will fall back to the automatic `GITHUB_TOKEN`
+> secret, which may cause the build to fail occasionally.
 
 ## License
 
