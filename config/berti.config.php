@@ -120,12 +120,23 @@ return function (Pimple\Container $container) {
                 return $cacheItem->get();
             }
 
-            $html = $renderer(
-                $content,
-                $document,
-                $documentCollection,
-                $assetCollection
-            );
+            try {
+                $html = $renderer(
+                    $content,
+                    $document,
+                    $documentCollection,
+                    $assetCollection
+                );
+            } catch (\Exception $e) {
+                echo 'Temporary error, will retry in 60s: ' . $e->getMessage() . PHP_EOL;
+                sleep(60);
+                $html = $renderer(
+                    $content,
+                    $document,
+                    $documentCollection,
+                    $assetCollection
+                );
+            }
 
             $cacheItem->set($html);
             $cache->save($cacheItem);
