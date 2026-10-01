@@ -97,6 +97,10 @@ function components_by_category(array $components): array
     $byCategory = [];
 
     foreach ($components as $component) {
+        if ('Legacy Components' === $component['category']) {
+            continue;
+        }
+
         if (!isset($byCategory[$component['category']])) {
             $byCategory[$component['category']] = [];
         }
