@@ -61,6 +61,7 @@ return [
         'repository' => 'reactphp/promise-stream',
         'category' => 'Utility Components'
     ],
+    // Legacy components are only kept to list their releases in the changelog
     [
         'title' => 'HttpClient',
         'repository' => 'reactphp/http-client',

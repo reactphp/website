@@ -225,10 +225,12 @@ return function (Pimple\Container $container) {
     });
 
     $container['document.finder'] = $container->protect(function ($path) {
+        // Legacy components redirect via static-files/ instead of rendering their docs
         return (new Symfony\Component\Finder\Finder())
             ->name('/\.md$/')
             ->name('LICENSE')
             ->files()
+            ->exclude(['http-client', 'socket-client'])
             ->in($path . '/tmp/components')
             ->in($path . '/pages');
     });
