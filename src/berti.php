@@ -129,6 +129,8 @@ function github_markdown_filter(
         $assetCollection
     );
 
+    $html = github_heading_rewriter($html);
+
     $map = [];
 
     foreach ($documentCollection as $doc) {
@@ -184,4 +186,22 @@ function github_markdown_filter(
     );
 
     return $html;
+}
+
+/**
+ * Moves GitHub's heading anchors back into the headings themselves.
+ *
+ * Since early 2024, GitHub renders headings like
+ * `<div class="markdown-heading"><h2 class="heading-element">Title</h2>`
+ * followed by `<a id="title" class="anchor" ...>...</a></div>`, while our
+ * theme expects the previous format with the anchor as the first child of the
+ * heading like `<h2><a id="title" class="anchor" ...>...</a>Title</h2>`.
+ */
+function github_heading_rewriter(string $html): string
+{
+    return preg_replace(
+        '/<div class="markdown-heading"[^>]*><(h[1-6])[^>]*>(.*?)<\/\1>(<a [^>]*class="anchor".*?<\/a>)<\/div>/',
+        '<$1>$3$2</$1>',
+        $html
+    );
 }
