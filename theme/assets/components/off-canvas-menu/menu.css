@@ -4,8 +4,6 @@
     width: 300px;
     height: 100%;
     z-index: 1000;
-    overflow-y: auto;
-    overflow-x: hidden;
     outline: none;
 
     &[aria-hidden="false"] {
